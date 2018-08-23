@@ -1,0 +1,15 @@
+D:\01Programms\VS\Repository\Wik\Vik\Vik\bin\Debug\Vik.exe.config
+D:\01Programms\VS\Repository\Wik\Vik\Vik\bin\Debug\Vik.exe
+D:\01Programms\VS\Repository\Wik\Vik\Vik\bin\Debug\Vik.pdb
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.csprojAssemblyReference.cache
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form1.resources
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form2.resources
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Properties.Resources.resources
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.csproj.GenerateResource.cache
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.csproj.CoreCompileInputs.cache
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.exe
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.pdb
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form3.resources
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form4.resources
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form5.resources
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form6.resources
