@@ -13,3 +13,4 @@ D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form3.resources
 D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form4.resources
 D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form5.resources
 D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form6.resources
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form7.resources

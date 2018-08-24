@@ -111,6 +111,8 @@ namespace Vik
             {
                 if (Data.vibor == 1 && Data.builds == 0)
                 {
+                    Form7 f = new Form7();
+                    f.ShowDialog();
                     int schet = 0;
                     int x = 1;
                     int treY = p.Y;
@@ -1030,6 +1032,7 @@ namespace Vik
         static public int enemyCount { get; set; } = 0;
         static public int builds { get; set; } = 0;
         static public int endgame { get; set; } = 0;
+        static public int konung { get; set; } = 0;
 
         static public int keyX { get; set; } = 0;
         static public int keyY { get; set; } = 0;
