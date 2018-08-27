@@ -106,5 +106,11 @@ namespace Vik
             if (Data.builds >= 1)
                 Data.vibor = 9;
         }
+
+        private void pictureBox14_Click(object sender, EventArgs e)
+        {
+            if (Data.builds >= 1)
+                Data.vibor = 13;
+        }
     }
 }

@@ -19,6 +19,7 @@ namespace Vik
         int[] buildY = new int[50];
         int[] enemyX = new int[50];
         int[] enemyY = new int[50];
+        int[,] wall = new int[30, 30];
         public Form2()
         {
             InitializeComponent();
@@ -425,8 +426,288 @@ namespace Vik
                     buildY[Data.builds] = p.Y;
                     Data.builds++;
                 }
+                if (Data.vibor == 13 && Data.tree >= 1)
+                {
+                    Data.tree -= 1;
+                    label3.Text = Data.tree.ToString();
+                    int direction = 0;
+                    int[] side = new int[4];
+                    if(p.X != 29)
+                    {
+                        if (wall[p.X + 1, p.Y] != 0)
+                        {
+                            side[0] = 1;
+                            direction = 1;
+                            WallBuild(p.X + 1, p.Y, direction);
+                        }
+                    }
+                    if (p.X != 0)
+                    {
+                        if (wall[p.X - 1, p.Y] != 0)
+                        {
+                            side[1] = 1;
+                            direction = 2;
+                            WallBuild(p.X - 1, p.Y, direction);
+                        }
+                    }
+                    if(p.Y != 0)
+                    {
+                        if (wall[p.X, p.Y - 1] != 0)
+                        {
+                            side[2] = 1;
+                            direction = 3;
+                            WallBuild(p.X, p.Y - 1, direction);
+                        }
+                    }
+                    if(p.Y != 16)
+                    {
+                        if (wall[p.X, p.Y + 1] != 0)
+                        {
+                            side[3] = 1;
+                            direction = 4;
+                            WallBuild(p.X, p.Y + 1, direction);
+                        }
+                    }
+                    if (side[0] == 0 && side[1] == 0 && side[2] == 0 && side[3] == 0)
+                    {
+                        wall[p.X, p.Y] = 1;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_03.png");
+                    }
+                    if (side[0] == 1 && side[1] == 0 && side[2] == 0 && side[3] == 0)
+                    {
+                        wall[p.X, p.Y] = 13;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_09.png");
+                    }
+                    if (side[0] == 0 && side[1] == 1 && side[2] == 0 && side[3] == 0)
+                    {
+                        wall[p.X, p.Y] = 14;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_11.png");
+                    }
+                    if (side[0] == 0 && side[1] == 0 && side[2] == 1 && side[3] == 0)
+                    {
+                        wall[p.X, p.Y] = 16;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_17.png");
+                    }
+                    if (side[0] == 0 && side[1] == 0 && side[2] == 0 && side[3] == 1)
+                    {
+                        wall[p.X, p.Y] = 15;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_04.png");
+                    }
+                    if (side[0] == 1 && side[1] == 1 && side[2] == 0 && side[3] == 0)
+                    {
+                        wall[p.X, p.Y] = 3;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_15.png");
+                    }
+                    if (side[0] == 1 && side[1] == 0 && side[2] == 1 && side[3] == 0)
+                    {
+                        wall[p.X, p.Y] = 7;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_13.png");
+                    }
+                    if (side[0] == 1 && side[1] == 0 && side[2] == 0 && side[3] == 1)
+                    {
+                        wall[p.X, p.Y] = 5;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_01.png");
+                    }
+                    if (side[0] == 0 && side[1] == 1 && side[2] == 1 && side[3] == 0)
+                    {
+                        wall[p.X, p.Y] = 6;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_16.png");
+                    }
+                    if (side[0] == 0 && side[1] == 1 && side[2] == 0 && side[3] == 1)
+                    {
+                        wall[p.X, p.Y] = 4;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_02.png");
+                    }
+                    if (side[0] == 0 && side[1] == 0 && side[2] == 1 && side[3] == 1)
+                    {
+                        wall[p.X, p.Y] = 2;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_07.png");
+                    }
+                    if (side[0] == 1 && side[1] == 1 && side[2] == 1 && side[3] == 0)
+                    {
+                        wall[p.X, p.Y] = 10;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_14.png");
+                    }
+                    if (side[0] == 1 && side[1] == 1 && side[2] == 0 && side[3] == 1)
+                    {
+                        wall[p.X, p.Y] = 11;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_05.png");
+                    }
+                    if (side[0] == 1 && side[1] == 0 && side[2] == 1 && side[3] == 1)
+                    {
+                        wall[p.X, p.Y] = 9;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_12.png");
+                    }
+                    if (side[0] == 0 && side[1] == 1 && side[2] == 1 && side[3] == 1)
+                    {
+                        wall[p.X, p.Y] = 8;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_06.png");
+                    }
+                    if (side[0] == 1 && side[1] == 1 && side[2] == 1 && side[3] == 1)
+                    {
+                        wall[p.X, p.Y] = 12;
+                        arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_10.png");
+                    }
+                    arr[p.X, p.Y].Enabled = false;
+                    matrix[p.X, p.Y] = 7;
+                    buildX[Data.builds] = p.X;
+                    buildY[Data.builds] = p.Y;
+                    Data.builds++;
+                }
             }
         }
+
+        public void WallBuild(int x, int y, int direction)
+        {
+            int p = wall[x, y];
+            if (p == 1 && direction == 1)
+            {
+                wall[x, y] = 14;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_11.png");
+            }
+            if (p == 1 && direction == 2)
+            {
+                wall[x, y] = 13;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_09.png");
+            }
+            if (p == 1 && direction == 3)
+            {
+                wall[x, y] = 15;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_04.png");
+            }
+            if (p == 1 && direction == 4)
+            {
+                wall[x, y] = 16;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_17.png");
+            }
+            if (p == 2 && direction == 1)
+            {
+                wall[x, y] = 8;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_06.png");
+            }
+            if (p == 2 && direction == 2)
+            {
+                wall[x, y] = 9;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_12.png");
+            }
+            if (p == 3 && direction == 3)
+            {
+                wall[x, y] = 11;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_05.png");
+            }
+            if (p == 3 && direction == 4)
+            {
+                wall[x, y] = 10;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_14.png");
+            }
+            if (p == 4 && direction == 2)
+            {
+                wall[x, y] = 11;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_05.png");
+            }
+            if (p == 4 && direction == 4)
+            {
+                wall[x, y] = 8;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_06.png");
+            }
+            if (p == 5 && direction == 1)
+            {
+                wall[x, y] = 11;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_05.png");
+            }
+            if (p == 5 && direction == 4)
+            {
+                wall[x, y] = 9;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_12.png");
+            }
+            if (p == 6 && direction == 2)
+            {
+                wall[x, y] = 10;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_14.png");
+            }
+            if (p == 6 && direction == 3)
+            {
+                wall[x, y] = 8;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_06.png");
+            }
+            if (p == 7 && direction == 1)
+            {
+                wall[x, y] = 10;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_14.png");
+            }
+            if (p == 7 && direction == 3)
+            {
+                wall[x, y] = 9;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_12.png");
+            }
+            if ((p == 8 && direction == 2) || (p == 9 && direction == 1) || (p == 10 && direction == 3) || (p == 11 && direction == 4))
+            {
+                wall[x, y] = 12;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_10.png");
+            }
+            if (p == 13 && direction == 1)
+            {
+                wall[x, y] = 3;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_15.png");
+            }
+            if (p == 13 && direction == 3)
+            {
+                wall[x, y] = 5;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_01.png");
+            }
+            if (p == 13 && direction == 4)
+            {
+                wall[x, y] = 7;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_13.png");
+            }
+            if (p == 14 && direction == 2)
+            {
+                wall[x, y] = 3;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_15.png");
+            }
+            if (p == 14 && direction == 3)
+            {
+                wall[x, y] = 4;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_02.png");
+            }
+            if (p == 14 && direction == 4)
+            {
+                wall[x, y] = 6;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_16.png");
+            }
+            if (p == 15 && direction == 1)
+            {
+                wall[x, y] = 4;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_02.png");
+            }
+            if (p == 15 && direction == 2)
+            {
+                wall[x, y] = 5;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_01.png");
+            }
+            if (p == 15 && direction == 4)
+            {
+                wall[x, y] = 2;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_07.png");
+            }
+            if (p == 16 && direction == 1)
+            {
+                wall[x, y] = 6;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_16.png");
+            }
+            if (p == 16 && direction == 2)
+            {
+                wall[x, y] = 7;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_13.png");
+            }
+            if (p == 16 && direction == 3)
+            {
+                wall[x, y] = 2;
+                arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\wall\\images\\tree_07.png");
+            }
+            return;
+        }
+
         private Button addButton(int x, int y)
         {
             Button b;
@@ -516,27 +797,6 @@ namespace Vik
                 b.BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\images\\tree_91.png");
             else
                 b.BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\images\\tree_03.png");
-
-            if (x == 0 && y == 0)
-            {
-                b.Text = "Е";
-            }
-            else if (x == 29 && y == 0)
-            {
-                b.Text = "К";
-            }
-            else if (x == 0 && y == 16)
-            {
-                b.Text = "Л";
-            }
-            else if (x == 29 && y == 16)
-            {
-                b.Text = "З";
-            }
-            else
-            {
-                b.Text = "";
-            }
             b.Visible = true;
             b.Tag = new Point(x, y);
             b.Left = x * 40;
@@ -624,7 +884,6 @@ namespace Vik
                     f.ShowDialog();
 
                     Form1 train = new Form1();
-                    this.Visible = false;
                     train.ShowDialog();
                     this.Close();
 
@@ -904,11 +1163,16 @@ namespace Vik
             }
         }
 
-            private void Eat(int a)
+        private void Eat(int a)
         {
+            int night = 0;
             while (Data.exit != 1)
             {
-                Thread.Sleep(a * Data.wheat);
+                if (Data.clock < 6 || Data.clock > 21)
+                    night = 2000;
+                else
+                    night = 0;
+                Thread.Sleep((a * Data.wheat) + night);
                 if (Data.eatMax > Data.eat)
                     Data.eat++;
                 if (Data.exit == 0)
@@ -918,9 +1182,14 @@ namespace Vik
 
         private void Forest(int a)
         {
+            int night = 0;
             while (Data.exit != 1)
             {
-                Thread.Sleep(a * 1000);
+                if (Data.clock < 6 || Data.clock > 21)
+                    night = 2000;
+                else
+                    night = 0;
+                Thread.Sleep((a * 1000) + night);
                 if(Data.treeMax > Data.tree)
                     Data.tree++;
                 if (Data.exit == 0)
@@ -930,9 +1199,14 @@ namespace Vik
 
         private void Stone(int a)
         {
+            int night = 0;
             while (Data.exit != 1)
             {
-                Thread.Sleep(a * 1000);
+                if (Data.clock < 6 || Data.clock > 21)
+                    night = 2000;
+                else
+                    night = 0;
+                Thread.Sleep((a * 1000) + night);
                 if (Data.rockMax > Data.rock)
                     Data.rock++;
                 if (Data.exit == 0)
@@ -942,9 +1216,14 @@ namespace Vik
 
         private void Gold(int a)
         {
+            int night = 0;
             while (Data.exit != 1)
             {
-                Thread.Sleep(a * 1000);
+                if (Data.clock < 6 || Data.clock > 21)
+                    night = 2000;
+                else
+                    night = 0;
+                Thread.Sleep((a * 1000) + night);
                 if (Data.moneyMax > Data.money)
                     Data.money++;
                 if (Data.exit == 0)
@@ -1015,7 +1294,7 @@ namespace Vik
         static public int vibor { get; set; } = 0;
         static public int eat { get; set; } = 100;
         static public int eatMax { get; set; } = 100;
-        static public int tree { get; set; } = 10;
+        static public int tree { get; set; } = 1000;
         static public int treeMax { get; set; } = 10;
         static public int rock { get; set; } = 10;
         static public int rockMax { get; set; } = 10;
