@@ -15,8 +15,8 @@ namespace Vik
     public partial class Form2 : Form
     {
         int[,] matrix = new int[30, 30];
-        int[] buildX = new int[50];
-        int[] buildY = new int[50];
+        int[] buildX = new int[100];
+        int[] buildY = new int[100];
         int[] enemyX = new int[50];
         int[] enemyY = new int[50];
         int[,] wall = new int[30, 30];
@@ -159,7 +159,7 @@ namespace Vik
                 }
                 if (Data.vibor == 2 && Data.tree >= 8)
                 {
-                    Data.tree -= 8;
+                    Data.tree -= 8;/////////////
                     label3.Text = Data.tree.ToString();
                     int schet = 0;
                     int x = 1;
@@ -1260,6 +1260,24 @@ namespace Vik
             f.ShowDialog();
         }
 
+        private void pictureBox9_Click(object sender, EventArgs e)
+        {
+            Form8 f = new Form8();
+            f.ShowDialog();
+        }
+
+        private void pictureBox10_Click(object sender, EventArgs e)
+        {
+            Form9 f = new Form9();
+            f.ShowDialog();
+        }
+
+        private void pictureBox11_Click(object sender, EventArgs e)
+        {
+            Form10 f = new Form10();
+            f.ShowDialog();
+        }
+
         private void pictureBox5_Click(object sender, EventArgs e)
         {
             Data.vibor = 0;
@@ -1295,7 +1313,7 @@ namespace Vik
         static public int eat { get; set; } = 100;
         static public int eatMax { get; set; } = 100;
         static public int tree { get; set; } = 1000;
-        static public int treeMax { get; set; } = 10;
+        static public int treeMax { get; set; } = 1000;
         static public int rock { get; set; } = 10;
         static public int rockMax { get; set; } = 10;
         static public int money { get; set; } = 0;
