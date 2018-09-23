@@ -14,6 +14,8 @@ namespace Vik
 {
     public partial class Form2 : Form
     {
+        private static Build Building = new Build();
+
         int[,] matrix = new int[30, 30];
         int[] buildX = new int[100];
         int[] buildY = new int[100];
@@ -23,6 +25,16 @@ namespace Vik
         public Form2()
         {
             InitializeComponent();
+            Building.Goldmine = new Buildgoldmine[10];
+            Building.Quarry = new Buildquarry[10];
+            Building.Sawmill = new Buildsawmill[10];
+            Building.Watchtower = new Buildwatchtower[30];
+            Building.Field = new Buildfield[20];
+            Building.Headquarters = new Buildheadquarters[1];
+            Building.Home = new Buildhome[30];
+            Building.Market = new Buildmarket[1];
+            Building.Wall = new BuildWall[200];
+
             this.WindowState = FormWindowState.Maximized;
             ToolTip t = new ToolTip();
             //t.SetToolTip(button2, "Подсказка для TextBox");

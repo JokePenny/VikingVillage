@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Vik
 {
@@ -22,14 +23,19 @@ namespace Vik
 
         private void label1_Click(object sender, EventArgs e)
         {
+            SoundPlayer Simple = new SoundPlayer(@"D:\01Programms\VS\Repository\Wik\Vik\Vik\Properties\Resources\click.wav");
+            Simple.Play();
             Form2 train = new Form2();
             this.Visible = false;
             train.ShowDialog();
             this.Close();
+            Simple.Stop();
         }
 
         private void label2_Click(object sender, EventArgs e)
         {
+            SoundPlayer Simpl = new SoundPlayer(@"D:\01Programms\VS\Repository\Wik\Vik\Vik\Properties\Resources\click.wav");
+            Simpl.Play();
             Form6 train = new Form6();
             this.Visible = false;
             train.ShowDialog();
@@ -38,21 +44,29 @@ namespace Vik
 
         private void label3_Click(object sender, EventArgs e)
         {
+            SoundPlayer Simple = new SoundPlayer(@"D:\01Programms\VS\Repository\Wik\Vik\Vik\Properties\Resources\click.wav");
+            Simple.Play();
             Application.Exit();
         }
 
         private void label1_MouseHover(object sender, EventArgs e)
         {
+            SoundPlayer Simple = new SoundPlayer(@"D:\01Programms\VS\Repository\Wik\Vik\Vik\Properties\Resources\click.wav");
+            Simple.Play();
             label1.ForeColor = Color.Black;
         }
 
         private void label2_MouseHover(object sender, EventArgs e)
         {
+            SoundPlayer Simple = new SoundPlayer(@"D:\01Programms\VS\Repository\Wik\Vik\Vik\Properties\Resources\click.wav");
+            Simple.Play();
             label2.ForeColor = Color.Black;
         }
 
         private void label3_MouseHover(object sender, EventArgs e)
         {
+            SoundPlayer Simple = new SoundPlayer(@"D:\01Programms\VS\Repository\Wik\Vik\Vik\Properties\Resources\click.wav");
+            Simple.Play();
             label3.ForeColor = Color.Black;
         }
 
