@@ -11,7 +11,53 @@ namespace Vik
         private byte x;// координата горизонтали
         private byte y;// координата вертикали
         private int health = 50;// здоровье
-        private int damage = 15;// урон
+        private byte damage = 15;// урон
         private byte distance;// растояние 
+
+        //геттеры
+
+        public byte GetX()
+        {
+            return x;
+        }
+        public byte GetY()
+        {
+            return y;
+        }
+        public int GetHealth()
+        {
+            return health;
+        }
+        public byte GetDistance()
+        {
+            return distance;
+        }
+        public byte GetDamage()
+        {
+            return damage;
+        }
+
+        //сеттеры
+
+        public void SetX(byte A)
+        {
+            x = A;
+        }
+        public void SetY(byte A)
+        {
+            y = A;
+        }
+        public void SetHealth(int A)
+        {
+            health = A;
+        }
+        public void SetDistance(byte A)
+        {
+            distance = A;
+        }
+        public void SetDamage(byte A)
+        {
+            damage = A;
+        }
     }
 }

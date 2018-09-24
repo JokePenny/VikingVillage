@@ -126,6 +126,9 @@ namespace Vik
                 {
                     Form7 f = new Form7();
                     f.ShowDialog();
+                    // определяем коорд базы
+                    Building.Headquarters[0].SetX(Convert.ToByte(p.X));
+                    Building.Headquarters[0].SetY(Convert.ToByte(p.Y));
                     int schet = 0;
                     int x = 1;
                     int treY = p.Y;

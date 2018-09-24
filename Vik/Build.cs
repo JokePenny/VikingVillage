@@ -8,6 +8,7 @@ namespace Vik
 {
     public class Build
     {
+
         public Buildgoldmine[] Goldmine;
         public Buildquarry[] Quarry;
         public Buildsawmill[] Sawmill;

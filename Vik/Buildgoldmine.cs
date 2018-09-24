@@ -12,5 +12,43 @@ namespace Vik
         private byte y;// координата вертикали
         private int health = 200;// здоровье
         private byte distance;// растояние 
+
+        //геттеры
+
+        public byte GetX()
+        {
+            return x;
+        }
+        public byte GetY()
+        {
+            return y;
+        }
+        public int GetHealth()
+        {
+            return health;
+        }
+        public byte GetDistance()
+        {
+            return distance;
+        }
+
+        //сеттеры
+
+        public void SetX(byte A)
+        {
+            x = A;
+        }
+        public void SetY(byte A)
+        {
+            y = A;
+        }
+        public void SetHealth(int A)
+        {
+            health = A;
+        }
+        public void SetDistance(byte A)
+        {
+            distance = A;
+        }
     }
 }

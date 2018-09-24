@@ -119,9 +119,15 @@
     <Compile Include="Form9.Designer.cs">
       <DependentUpon>Form9.cs</DependentUpon>
     </Compile>
+    <Compile Include="Fossils.cs" />
+    <Compile Include="FossilsEat.cs" />
+    <Compile Include="FossilsForest.cs" />
+    <Compile Include="FossilsGold.cs" />
+    <Compile Include="FossilsStone.cs" />
     <Compile Include="People.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResourceVillage.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
