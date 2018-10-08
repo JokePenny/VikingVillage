@@ -8,22 +8,23 @@ namespace Vik
 {
     class ResourceVillage
     {
-        private ushort eat = 0;
-        private ushort stone = 0;
+        private ushort eat = 100;
+        private ushort stone = 10;
         private ushort gold = 0;
-        private ushort forest = 0;
+        private ushort forest = 10;
         private short population = 5;
         private ushort boards = 0;
         private ushort brick = 0;
         private ushort passedDay = 0;
         private byte clock = 0;
+        private ushort speedPicking = 3000;
 
         // максимальные значения ресурсов
         private ushort eatMax = 100;
         private ushort stoneMax = 10;
         private ushort goldMax = 0;
         private ushort forestMax = 10;
-        private short populationMax = 10;
+        private ushort populationMax = 10;
         private ushort boardsMax = 0;
         private ushort brickMax = 0;
 
@@ -65,6 +66,10 @@ namespace Vik
         {
             return clock;
         }
+        public ushort GetSpeedPicking()
+        {
+            return speedPicking;
+        }
 
         //макс
         public ushort GetEatMax()
@@ -83,7 +88,7 @@ namespace Vik
         {
             return forestMax;
         }
-        public short GetPopulationMax()
+        public ushort GetPopulationMax()
         {
             return populationMax;
         }
@@ -135,6 +140,10 @@ namespace Vik
         {
             clock = A;
         }
+        public void SetSpeedPicking(ushort A)
+        {
+            speedPicking = A;
+        }
 
         //макс
 
@@ -154,7 +163,7 @@ namespace Vik
         {
             forestMax = A;
         }
-        public void SetPopulationMax(short A)
+        public void SetPopulationMax(ushort A)
         {
             populationMax = A;
         }

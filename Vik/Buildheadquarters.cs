@@ -11,7 +11,7 @@ namespace Vik
         private byte x;// координата горизонтали
         private byte y;// координата вертикали
         private int health = 500;// здоровье
-        private byte distance;// растояние 
+        private byte distance = 0;// растояние 
 
 
         //геттеры

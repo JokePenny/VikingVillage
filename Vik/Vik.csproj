@@ -55,6 +55,7 @@
     <Compile Include="Buildsawmill.cs" />
     <Compile Include="BuildWall.cs" />
     <Compile Include="Buildwatchtower.cs" />
+    <Compile Include="Calculation.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="EnemyEasy.cs" />
     <Compile Include="EnemyHeavy.cs" />

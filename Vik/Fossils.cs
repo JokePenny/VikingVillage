@@ -8,6 +8,7 @@ namespace Vik
 {
     class Fossils
     {
+        /*
         public FossilsEat[] Eat;
         public FossilsForest[] Forest;
         public FossilsStone[] Stone;
@@ -49,6 +50,7 @@ namespace Vik
         {
             Gold = A;
         }
+        */
 
     }
 }

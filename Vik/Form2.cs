@@ -15,6 +15,11 @@ namespace Vik
     public partial class Form2 : Form
     {
         private static Build Building = new Build();
+        private static FossilsEat EatResources = new FossilsEat();
+        private static FossilsForest ForestResources = new FossilsForest();
+        private static FossilsStone StoneResources = new FossilsStone();
+        private static FossilsGold GoldResources = new FossilsGold();
+        private static ResourceVillage Village = new ResourceVillage();
 
         int[,] matrix = new int[30, 30];
         int[] buildX = new int[100];
@@ -47,7 +52,6 @@ namespace Vik
                 for (int i2 = 1; i2 < 17; i2++)
                 {
                     arr[i, i2] = addButton(i, i2);
-
                 }
             }
             matrix[0, 0] = 1;
@@ -120,42 +124,38 @@ namespace Vik
         private void b_Click(object sender, EventArgs e)
         {
             Point p = (Point)(sender as Button).Tag;
+            byte treY = Convert.ToByte(p.Y);
+            byte treX = Convert.ToByte(p.X);
             if (matrix[p.X, p.Y] == 0)
             {
-                if (Data.vibor == 1 && Data.builds == 0)
+                if (Data.vibor == 1 && Data.builds == 0) // создание базы
                 {
                     Form7 f = new Form7();
                     f.ShowDialog();
                     // определяем коорд базы
                     Building.Headquarters[0].SetX(Convert.ToByte(p.X));
                     Building.Headquarters[0].SetY(Convert.ToByte(p.Y));
-                    int schet = 0;
-                    int x = 1;
-                    int treY = p.Y;
-                    int treX = p.X;
-                    for (int i = 0; i < x; i++)
+                    byte x = 0;
+                    for (byte i = 0; i < x + 1; i++)
                     {
-                        if (treY > Data.keyY)
+                        if (treY > EatResources.GetY())
                             treY--;
-                        else if (treY < Data.keyY)
+                        else if (treY < EatResources.GetY())
                             treY++;
-                        if (treX > Data.keyX)
+                        if (treX > EatResources.GetX())
                             treX--;
-                        else if (treX < Data.keyX)
+                        else if (treX < EatResources.GetX())
                             treX++;
                         if (treY == 0 && treX == 0)
                         {
-                            schet++;
+                            x++;
+                            Building.Headquarters[0].SetDistance(x);
+                            i = 255;
                         }
                         else
-                        {
                             x++;
-                            schet++;
-                        }
                     }
-                    Data.keyX = p.X;
-                    Data.keyY = p.Y;
-                    Thread eatthread = new Thread(delegate () { Eat(schet); }); ;
+                    Thread eatthread = new Thread(delegate () { Eat(Building.Headquarters[0].GetDistance()); }); ;
                     eatthread.Start();
                     Thread populationthread = new Thread(Population);
                     populationthread.Start();
@@ -172,52 +172,12 @@ namespace Vik
                     buildY[Data.builds] = p.Y;
                     Data.builds++;
                 }
-                if (Data.vibor == 2 && Data.tree >= 8)
+                if (Data.vibor == 2 && Village.GetForest() >= 8) // лесопилка
                 {
-                    Data.tree -= 8;/////////////
-                    label3.Text = Data.tree.ToString();
-                    int schet = 0;
-                    int x = 1;
-                    int treY = 16;
-                    int treX = 0;
-                    for (int i = 0; i < x; i++)
-                    {
-                        if (treY > p.Y)
-                            treY--;
-                        if (treX < p.X)
-                            treX++;
-                        if (treY == p.Y && treX == p.X)
-                        {
-                            schet++;
-                        }
-                        else
-                        {
-                            x++;
-                            schet++;
-                        }
-                    }
-                    x = 1;
-                    for (int i = 0; i < x; i++)
-                    {
-                        if (treY > Data.keyY)
-                            treY--;
-                        else if (treY < Data.keyY)
-                            treY++;
-                        if (treX > Data.keyX)
-                            treX--;
-                        else if (treX < Data.keyX)
-                            treX++;
-                        if (treY == Data.keyY && treX == Data.keyX)
-                        {
-                            schet++;
-                        }
-                        else
-                        {
-                            x++;
-                            schet++;
-                        }
-                    }
-                    Thread forestthread = new Thread(delegate () { Forest(schet); }); ;
+                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 8));
+                    label3.Text = Village.GetForest().ToString();
+                    Building.Sawmill[0].SetDistance(Calculation.DistanceCalc(treX, treY, ForestResources.GetX(), ForestResources.GetX(), Building.Headquarters[0].GetX(), Building.Headquarters[0].GetY()));
+                    Thread forestthread = new Thread(delegate () { Forest(Building.Sawmill[0].GetDistance()); }); ;
                     forestthread.Start();
                     arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_218.png");
                     arr[p.X, p.Y].Enabled = false;
@@ -226,52 +186,12 @@ namespace Vik
                     buildY[Data.builds] = p.Y;
                     Data.builds++;
                 }
-                if (Data.vibor == 3 && Data.rock >= 7)
+                if (Data.vibor == 3 && Village.GetStone() >= 7) // шахта
                 {
-                    Data.rock -= 7;
+                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 7));
                     label4.Text = Data.rock.ToString();
-                    int schet = 0;
-                    int x = 1;
-                    int treY = 0;
-                    int treX = 29;
-                    for (int i = 0; i < x; i++)
-                    {
-                        if (treY < p.Y)
-                            treY++;
-                        if (treX > p.X)
-                            treX--;
-                        if (treY == p.Y && treX == p.X)
-                        {
-                            schet++;
-                        }
-                        else
-                        {
-                            x++;
-                            schet++;
-                        }
-                    }
-                    x = 1;
-                    for (int i = 0; i < x; i++)
-                    {
-                        if (treY > Data.keyY)
-                            treY--;
-                        else if (treY < Data.keyY)
-                            treY++;
-                        if (treX > Data.keyX)
-                            treX--;
-                        else if (treX < Data.keyX)
-                            treX++;
-                        if (treY == Data.keyY && treX == Data.keyX)
-                        {
-                            schet++;
-                        }
-                        else
-                        {
-                            x++;
-                            schet++;
-                        }
-                    }
-                    Thread stonethread = new Thread(delegate () { Stone(schet); }); ;
+                    Building.Quarry[0].SetDistance(Calculation.DistanceCalc(treX, treY, StoneResources.GetX(), StoneResources.GetX(), Building.Headquarters[0].GetX(), Building.Headquarters[0].GetY()));
+                    Thread stonethread = new Thread(delegate () { Stone(Building.Quarry[0].GetDistance()); }); ;
                     stonethread.Start();
                     arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_155.png");
                     arr[p.X, p.Y].Enabled = false;
@@ -280,72 +200,36 @@ namespace Vik
                     buildY[Data.builds] = p.Y;
                     Data.builds++;
                 }
-                if (Data.vibor == 4 && Data.tree >= 20 && Data.rock >= 20)
+                if (Data.vibor == 4 && Village.GetForest() >= 20 && Village.GetStone() >= 20) // золотой рудник
                 {
-                    Data.tree -= 20;
-                    Data.rock -= 20;
-                    int schet = 0;
-                    int x = 1;
-                    int treY = 16;
-                    int treX = 0;
-                    for (int i = 0; i < x; i++)
-                    {
-                        if (treY > p.Y)
-                            treY--;
-                        if (treX < p.X)
-                            treX++;
-                        if (treY == p.Y && treX == p.X)
-                        {
-                            schet++;
-                        }
-                        else
-                        {
-                            x++;
-                            schet++;
-                        }
-                    }
-                    x = 1;
-                    for (int i = 0; i < x; i++)
-                    {
-                        if (treY > Data.keyY)
-                            treY--;
-                        if (treX > Data.keyX)
-                            treX--;
-                        if (treY == Data.keyY && treX == Data.keyX)
-                        {
-                            schet++;
-                        }
-                        else
-                        {
-                            x++;
-                            schet++;
-                        }
-                    }
-                    Thread goldthread = new Thread(delegate () { Gold(schet); }); ;
+                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 20));
+                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 20));
+                    Building.Goldmine[0].SetDistance(Calculation.DistanceCalc(treX, treY, GoldResources.GetX(), GoldResources.GetX(), Building.Headquarters[0].GetX(), Building.Headquarters[0].GetY()));
+                    Thread goldthread = new Thread(delegate () { Gold(Building.Goldmine[0].GetDistance()); }); ;
                     goldthread.Start();
                     arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_279.png");
                     arr[p.X, p.Y].Enabled = false;
-                    label3.Text = Data.tree.ToString();
-                    label4.Text = Data.rock.ToString();
+                    label3.Text = Village.GetForest().ToString();
+                    label4.Text = Village.GetStone().ToString();
                     matrix[p.X, p.Y] = 2;
                     buildX[Data.builds] = p.X;
                     buildY[Data.builds] = p.Y;
                     Data.builds++;
                 }
-                if (Data.vibor == 5 && Data.tree >= 10 && Data.rock >= 5)
+                if (Data.vibor == 5 && Village.GetForest() >= 10 && Village.GetStone() >= 5) // склад
                 {
-                    Data.tree -= 10;
-                    Data.rock -= 5;
-                    Data.eatMax += 30;
-                    Data.treeMax += 10;
-                    Data.rockMax += 10;
-                    Data.moneyMax += 5;
-                    label3.Text = Data.tree.ToString();
-                    label4.Text = Data.rock.ToString();
-                    label11.Text = Data.eatMax.ToString();
-                    label12.Text = Data.treeMax.ToString();
-                    label13.Text = Data.rockMax.ToString();
-                    label14.Text = Data.moneyMax.ToString();
+                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 10));
+                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 5));
+                    Village.SetEatMax(Convert.ToUInt16(Village.GetEatMax() + 30));
+                    Village.SetForestMax(Convert.ToUInt16(Village.GetForestMax() + 10));
+                    Village.SetStoneMax(Convert.ToUInt16(Village.GetStoneMax() + 10));
+                    Village.SetGoldMax(Convert.ToUInt16(Village.GetGoldMax() + 5));
+                    label3.Text = Village.GetForest().ToString();
+                    label4.Text = Village.GetStone().ToString();
+                    label11.Text = Village.GetEatMax().ToString();
+                    label12.Text = Village.GetForestMax().ToString();
+                    label13.Text = Village.GetStoneMax().ToString();
+                    label14.Text = Village.GetGoldMax().ToString();
                     arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_126.png");
                     arr[p.X, p.Y].Enabled = false;
                     matrix[p.X, p.Y] = 2;
@@ -353,13 +237,13 @@ namespace Vik
                     buildY[Data.builds] = p.Y;
                     Data.builds++;
                 }
-                if (Data.vibor == 6 && Data.tree >= 10 && Data.rock >= 5)
+                if (Data.vibor == 6 && Village.GetForest() >= 10 && Village.GetStone() >= 5) // пшеничное поле
                 {
-                    Data.tree -= 10;
-                    Data.rock -= 5;
-                    Data.wheat -= 100;
-                    label3.Text = Data.tree.ToString();
-                    label4.Text = Data.rock.ToString();
+                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 10));
+                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 5));
+                    Village.SetSpeedPicking(Convert.ToUInt16(Village.GetSpeedPicking() - 100));
+                    label3.Text = Village.GetForest().ToString();
+                    label4.Text = Village.GetStone().ToString();
                     arr[p.X, p.Y].Enabled = false;
                     matrix[p.X, p.Y] = 2;
                     arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_94.png");
@@ -367,14 +251,14 @@ namespace Vik
                     buildY[Data.builds] = p.Y;
                     Data.builds++;
                 }
-                if (Data.vibor == 7 && Data.tree >= 10 && Data.rock >= 5)
+                if (Data.vibor == 7 && Data.tree >= 10 && Data.rock >= 5) // дом
                 {
-                    Data.populationMax += 10;
-                    Data.tree -= 10;
-                    Data.rock -= 5;
-                    label3.Text = Data.tree.ToString();
-                    label4.Text = Data.rock.ToString();
-                    label15.Text = Data.populationMax.ToString();
+                    Village.SetPopulationMax(Convert.ToUInt16(Village.GetPopulationMax() + 15));
+                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 10));
+                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 5));
+                    label3.Text = Village.GetForest().ToString();
+                    label4.Text = Village.GetStone().ToString();
+                    label15.Text = Village.GetPopulationMax().ToString();
                     arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_124.png");
                     arr[p.X, p.Y].Enabled = false;
                     matrix[p.X, p.Y] = 2;
@@ -382,7 +266,7 @@ namespace Vik
                     buildY[Data.builds] = p.Y;
                     Data.builds++;
                 }
-                if (Data.vibor == 8)
+                if (Data.vibor == 8) // дозорная башня
                 {
                     Thread towerthread = new Thread(delegate () { Tower(p.X, p.Y); }); ;
                     towerthread.Start();
@@ -441,7 +325,7 @@ namespace Vik
                     buildY[Data.builds] = p.Y;
                     Data.builds++;
                 }
-                if (Data.vibor == 13 && Data.tree >= 1)
+                if (Data.vibor == 13 && Data.tree >= 1) // стена
                 {
                     Data.tree -= 1;
                     label3.Text = Data.tree.ToString();
