@@ -12,6 +12,7 @@ namespace Vik
 {
     public partial class Form3 : Form
     {
+        ResourceVillage Village = ResourceVillage.GetInstance();
         public Form3()
         {
             InitializeComponent();
@@ -43,74 +44,74 @@ namespace Vik
 
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            if(Data.builds >= 1)
-                Data.vibor = 4;
+            if(Village.GetChoose() > 1)
+                Village.SetChoose(4);
         }
 
         private void pictureBox4_Click(object sender, EventArgs e)
         {
-            if (Data.builds >= 1)
-                Data.vibor = 12;
+            if (Village.GetChoose() > 1)
+                Village.SetChoose(12);
         }
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            if (Data.builds >= 1)
-                Data.vibor = 7;
+            if (Village.GetChoose() > 1)
+                Village.SetChoose(7);
         }
 
         private void pictureBox6_Click(object sender, EventArgs e)
         {
-            if (Data.builds >= 1)
-                Data.vibor = 3;
+            if (Village.GetChoose() > 1)
+                Village.SetChoose(3);
         }
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-            if (Data.builds >= 1)
-                Data.vibor = 11;
+            if (Village.GetChoose() > 1)
+                Village.SetChoose(11);
         }
 
         private void pictureBox8_Click(object sender, EventArgs e)
         {
-            if (Data.builds >= 1)
-                Data.vibor = 12;
+            if (Village.GetChoose() > 1)
+                Village.SetChoose(12);
         }
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
-            if(Data.builds >= 1)
-                Data.vibor = 5;
+            if(Village.GetChoose() > 1)
+                Village.SetChoose(5);
         }
 
         private void pictureBox10_Click(object sender, EventArgs e)
         {
-            if (Data.builds >= 1)
-                Data.vibor = 2;
+            if (Village.GetChoose() > 1)
+                Village.SetChoose(2);
         }
 
         private void pictureBox11_Click(object sender, EventArgs e)
         {
-            if (Data.builds >= 1)
-                Data.vibor = 10;
+            if (Village.GetChoose() > 1)
+                Village.SetChoose(10);
         }
 
         private void pictureBox12_Click(object sender, EventArgs e)
         {
-            if (Data.builds >= 1)
-                Data.vibor = 6;
+            if (Village.GetChoose() > 1)
+                Village.SetChoose(6);
         }
 
         private void pictureBox13_Click(object sender, EventArgs e)
         {
-            if (Data.builds >= 1)
-                Data.vibor = 9;
+            if (Village.GetChoose() > 1)
+                Village.SetChoose(9);
         }
 
         private void pictureBox14_Click(object sender, EventArgs e)
         {
-            if (Data.builds >= 1)
-                Data.vibor = 13;
+            if (Village.GetChoose() > 1)
+                Village.SetChoose(13);
         }
     }
 }

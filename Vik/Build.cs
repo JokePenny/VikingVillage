@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Vik
 {
@@ -18,6 +19,7 @@ namespace Vik
         public Buildhome[] Home;
         public Buildmarket[] Market;
         public BuildWall[] Wall;
+        public Buildstorage[] Storage;
 
         // геттеры
         public Buildgoldmine[] GetGoldmine()
@@ -65,6 +67,11 @@ namespace Vik
             return Wall;
         }
 
+        public Buildstorage[] GetStorage()
+        {
+            return Storage;
+        }
+
         //сеттеры
 
         public void SetGoldmine(Buildgoldmine[] A)
@@ -110,6 +117,11 @@ namespace Vik
         public void SetWall(BuildWall[] A)
         {
             Wall = A;
+        }
+
+        public void SetStorage(Buildstorage[] A)
+        {
+            Storage = A;
         }
     }
 }

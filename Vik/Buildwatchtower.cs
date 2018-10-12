@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Drawing;
 
 namespace Vik
 {
@@ -10,9 +11,20 @@ namespace Vik
     {
         private byte x;// координата горизонтали
         private byte y;// координата вертикали
-        private int health = 150;// здоровье
+        private ushort health = 150;// здоровье
         private byte damage = 20;// насоносимый урон
         private byte distance;// растояние 
+        private byte ID = 18;// индефикатор объекта 
+
+        public void SetImage()
+        {
+            Form2.arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\r.png");
+        }
+
+        public void SetDeleteImage()
+        {
+            Form2.arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\images\\tree_03.png");
+        }
 
         //геттеры
 
@@ -24,7 +36,7 @@ namespace Vik
         {
             return y;
         }
-        public int GetHealth()
+        public ushort GetHealth()
         {
             return health;
         }
@@ -35,6 +47,10 @@ namespace Vik
         public byte GetDamage()
         {
             return damage;
+        }
+        public byte GetID()
+        {
+            return ID;
         }
 
         //сеттеры
@@ -47,7 +63,7 @@ namespace Vik
         {
             y = A;
         }
-        public void SetHealth(int A)
+        public void SetHealth(ushort A)
         {
             health = A;
         }

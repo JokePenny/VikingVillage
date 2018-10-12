@@ -11,6 +11,7 @@ namespace Vik
         private byte x = 29;// координата горизонтали
         private byte y = 16;// координата вертикали
         private byte count;// число населения
+        private byte ID = 3;// индефикатор объекта 
 
         //геттеры
 
@@ -25,6 +26,10 @@ namespace Vik
         public byte GetCount()
         {
             return count;
+        }
+        public byte GetID()
+        {
+            return ID;
         }
 
         //сеттеры

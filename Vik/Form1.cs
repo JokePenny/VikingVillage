@@ -15,7 +15,6 @@ namespace Vik
     {
         public Form1()
         {
-
             InitializeComponent();
             this.WindowState = FormWindowState.Maximized;
             this.FormBorderStyle = FormBorderStyle.None;

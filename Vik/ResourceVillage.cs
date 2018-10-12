@@ -6,13 +6,17 @@ using System.Threading.Tasks;
 
 namespace Vik
 {
-    class ResourceVillage
+    public sealed class ResourceVillage
     {
+        private static ResourceVillage player;
+
+        private ResourceVillage() {}
+
         private ushort eat = 100;
         private ushort stone = 10;
         private ushort gold = 0;
         private ushort forest = 10;
-        private short population = 5;
+        private ushort population = 5;
         private ushort boards = 0;
         private ushort brick = 0;
         private ushort passedDay = 0;
@@ -27,6 +31,9 @@ namespace Vik
         private ushort populationMax = 10;
         private ushort boardsMax = 0;
         private ushort brickMax = 0;
+
+        // флаг пользователя
+        private byte choose = 0;
 
         //геттеры
 
@@ -46,7 +53,7 @@ namespace Vik
         {
             return forest;
         }
-        public short GetPopulation()
+        public ushort GetPopulation()
         {
             return population;
         }
@@ -101,6 +108,12 @@ namespace Vik
             return brick;
         }
 
+        //флаг
+        public byte GetChoose()
+        {
+            return choose;
+        }
+
 
         //сеттеры
 
@@ -120,7 +133,7 @@ namespace Vik
         {
             forest = A;
         }
-        public void SetPopulation(short A)
+        public void SetPopulation(ushort A)
         {
             population = A;
         }
@@ -174,6 +187,26 @@ namespace Vik
         public void SetBrickMax(ushort A)
         {
             brickMax = A;
+        }
+
+        //флаг
+        public void SetChoose(byte A)
+        {
+            choose = A;
+        }
+
+        public static ResourceVillage GetInstance()
+        {
+            if (player == null)
+            {
+                lock (typeof(ResourceVillage))
+                {
+                    if (player == null)
+                        player = new ResourceVillage();
+                }
+            }
+
+            return player;
         }
 
     }
