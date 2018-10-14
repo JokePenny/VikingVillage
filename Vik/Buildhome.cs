@@ -7,11 +7,8 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class Buildhome
+    public class Buildhome : Build
     {
-        private byte x;// координата горизонтали
-        private byte y;// координата вертикали
-        private ushort health = 50;// здоровье
         private byte ID = 13;// индефикатор объекта 
 
         public void SetImage()

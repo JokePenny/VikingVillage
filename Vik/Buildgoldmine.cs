@@ -7,11 +7,8 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class Buildgoldmine
+    public class Buildgoldmine : Build
     {
-        private byte x;// координата горизонтали
-        private byte y;// координата вертикали
-        private ushort health = 200;// здоровье
         private byte distance;// растояние 
         private byte ID = 11;// индефикатор объекта 
 

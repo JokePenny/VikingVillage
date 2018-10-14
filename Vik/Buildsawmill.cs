@@ -7,11 +7,8 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class Buildsawmill
+    public class Buildsawmill : Build
     {
-        private byte x;// координата горизонтали
-        private byte y;// координата вертикали
-        private ushort health = 200;// здоровье
         private byte distance;// растояние 
         private byte ID = 16;// индефикатор объекта 
 

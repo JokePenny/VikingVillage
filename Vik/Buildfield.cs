@@ -7,11 +7,9 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class Buildfield
+    public class Buildfield : Build
     {
-        private byte x;// координата горизонтали
-        private byte y;// координата вертикали
-        private ushort health = 100;// здоровье
+
         private byte distance;// растояние 
         private byte ID = 10;// индефикатор объекта 
 

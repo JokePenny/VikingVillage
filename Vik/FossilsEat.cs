@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 
 namespace Vik
 {
-    public class FossilsEat
+    public class FossilsEat : Fossils
     {
+        /*
         private byte x = 0;// координата горизонтали
         private byte y = 0;// координата вертикали
         private byte count;// число населения
+        */
         private byte ID = 1;// индефикатор объекта 
 
         //геттеры

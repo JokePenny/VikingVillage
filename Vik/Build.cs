@@ -9,6 +9,9 @@ namespace Vik
 {
     public class Build
     {
+        protected byte x;
+        protected byte y;
+        protected ushort health;// здоровье
 
         public Buildgoldmine[] Goldmine;
         public Buildquarry[] Quarry;
@@ -20,6 +23,13 @@ namespace Vik
         public Buildmarket[] Market;
         public BuildWall[] Wall;
         public Buildstorage[] Storage;
+/*
+        public Build(byte x, byte y, ushort Health)
+    : base(x,y)
+        {
+            health = Health;
+        }
+        */
 
         // геттеры
         public Buildgoldmine[] GetGoldmine()

@@ -19,8 +19,7 @@ namespace Vik
         private static FossilsForest ForestResources = new FossilsForest();
         private static FossilsStone StoneResources = new FossilsStone();
         private static FossilsGold GoldResources = new FossilsGold();
-        //private static ResourceVillage Village = new ResourceVillage();
-        ResourceVillage Village = ResourceVillage.GetInstance();
+        private static ResourceVillage Village = ResourceVillage.GetInstance();
         private int[,] matrix = new int[30, 30];
         private byte[,] BuildMap = new byte[30, 30];
         private int[] buildX = new int[100];

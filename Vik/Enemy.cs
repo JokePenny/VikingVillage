@@ -8,6 +8,9 @@ namespace Vik
 {
     public class Enemy
     {
+        protected byte x;// координата горизонтали
+        protected byte y;// координата вертикали
+
         private EnemyEasy[] EnEasy;
         private EnemyMedium[] EnMedium;
         private EnemyHeavy[] EnHeavy;

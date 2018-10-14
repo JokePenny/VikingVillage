@@ -12,7 +12,7 @@ namespace Vik
 {
     public partial class Form3 : Form
     {
-        ResourceVillage Village = ResourceVillage.GetInstance();
+        private static ResourceVillage Village = ResourceVillage.GetInstance();
         public Form3()
         {
             InitializeComponent();

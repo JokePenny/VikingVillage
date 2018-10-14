@@ -6,51 +6,10 @@ using System.Threading.Tasks;
 
 namespace Vik
 {
-    class Fossils
+    public class Fossils
     {
-        /*
-        public FossilsEat[] Eat;
-        public FossilsForest[] Forest;
-        public FossilsStone[] Stone;
-        public FossilsGold[] Gold;
-
-        // геттеры
-        public FossilsEat[] GetEat()
-        {
-            return Eat;
-        }
-        public FossilsForest[] GetForest()
-        {
-            return Forest;
-        }
-        public FossilsStone[] GetStone()
-        {
-            return Stone;
-        }
-        public FossilsGold[] GetGold()
-        {
-            return Gold;
-        }
-
-        //сеттеры
-
-        public void SetEat(FossilsEat[] A)
-        {
-            Eat = A;
-        }
-        public void SetGoldmine(FossilsForest[] A)
-        {
-            Forest = A;
-        }
-        public void SetGoldmine(FossilsStone[] A)
-        {
-            Stone = A;
-        }
-        public void SetGoldmine(FossilsGold[] A)
-        {
-            Gold = A;
-        }
-        */
-
+        protected byte x = 0;// координата горизонтали
+        protected byte y = 0;// координата вертикали
+        protected byte count;// число населения
     }
 }

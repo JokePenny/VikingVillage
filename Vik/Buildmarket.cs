@@ -7,11 +7,8 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class Buildmarket
+    public class Buildmarket : Build
     {
-        private byte x;// координата горизонтали
-        private byte y;// координата вертикали
-        private int health = 150;// здоровье
         private byte ID = 14;// индефикатор объекта 
 
         public void SetImage()
@@ -53,7 +50,7 @@ namespace Vik
         {
             y = A;
         }
-        public void SetHealth(int A)
+        public void SetHealth(ushort A)
         {
             health = A;
         }

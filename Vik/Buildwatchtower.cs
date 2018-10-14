@@ -7,11 +7,8 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class Buildwatchtower
+    public class Buildwatchtower : Build
     {
-        private byte x;// координата горизонтали
-        private byte y;// координата вертикали
-        private ushort health = 150;// здоровье
         private byte damage = 20;// насоносимый урон
         private byte distance;// растояние 
         private byte ID = 18;// индефикатор объекта 

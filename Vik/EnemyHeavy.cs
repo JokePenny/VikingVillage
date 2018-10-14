@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace Vik
 {
-    public class EnemyHeavy
+    public class EnemyHeavy : Enemy
     {
-        private byte x;// координата горизонтали
-        private byte y;// координата вертикали
         private int health = 150;// здоровье
         private byte damage = 35;// урон
         private byte distance;// растояние 

@@ -7,11 +7,8 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class Buildquarry
+    public class Buildquarry : Build
     {
-        private byte x;// координата горизонтали
-        private byte y;// координата вертикали
-        private ushort health = 200;// здоровье
         private byte distance;// растояние
         private byte ID = 15;// индефикатор объекта 
 

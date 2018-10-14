@@ -8,11 +8,8 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class Buildheadquarters
+    public class Buildheadquarters : Build
     {
-        private byte x;// координата горизонтали
-        private byte y;// координата вертикали
-        private ushort health = 500;// здоровье
         private byte distance = 0;// растояние 
         private byte ID = 12;// индефикатор объекта 
 
