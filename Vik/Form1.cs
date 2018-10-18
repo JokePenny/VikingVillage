@@ -39,6 +39,7 @@ namespace Vik
             this.Visible = false;
             train.ShowDialog();
             this.Close();
+            this.Dispose();
         }
 
         private void label3_Click(object sender, EventArgs e)

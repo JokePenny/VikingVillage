@@ -75,9 +75,8 @@
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
             this.label1.Location = new System.Drawing.Point(72, 362);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 52);
+            this.label1.Size = new System.Drawing.Size(0, 26);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Торвальд\r\nСтроитель\r\n";
             // 
             // label2
             // 
@@ -86,9 +85,8 @@
             this.label2.Image = ((System.Drawing.Image)(resources.GetObject("label2.Image")));
             this.label2.Location = new System.Drawing.Point(332, 362);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(104, 52);
+            this.label2.Size = new System.Drawing.Size(0, 26);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Йормунд\r\nЛесоруб";
             // 
             // label3
             // 
@@ -97,9 +95,8 @@
             this.label3.Image = ((System.Drawing.Image)(resources.GetObject("label3.Image")));
             this.label3.Location = new System.Drawing.Point(576, 362);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(143, 52);
+            this.label3.Size = new System.Drawing.Size(0, 26);
             this.label3.TabIndex = 1;
-            this.label3.Text = "     Эйнар\r\nЗолоторукий\r\n";
             // 
             // label4
             // 

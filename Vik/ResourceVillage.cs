@@ -11,7 +11,14 @@ namespace Vik
         private static ResourceVillage player;
 
         private ResourceVillage() {}
-
+        // konung
+        private byte HealthKonung; // здоровье конунга
+        private byte VillageManagment; // навык управления
+        private string NameKonung; // имя конунга
+        private string StoryKonung; // история конунга
+        private byte ReligionKonung; // 0 = язычник 1 = христьянин
+        private byte RepressionKonung; // репрессии (подавление бунтов)
+        //
         private ushort eat = 100;
         private ushort stone = 10;
         private ushort gold = 0;
@@ -22,6 +29,14 @@ namespace Vik
         private ushort passedDay = 0;
         private byte clock = 0;
         private ushort speedPicking = 3000;
+        private byte ReligionStatic = 100; // устойчивость религии, при торговле с иноземцами или неудачном конунге устойчивость будет падать
+        private byte ReligionVillage = 0; // религия деревни (по дефолту язычники)
+
+        /// <summary>
+        /// при устойчивости религии меньше 50, увеличиваются шансы
+        /// на бунты (падение населения, уменьшение ресурсов, уничтожение построек)
+        /// при снижении устойчивости риск возникновения бунта увеличивается
+        /// </summary>
 
         // максимальные значения ресурсов
         private ushort eatMax = 100;
@@ -36,6 +51,34 @@ namespace Vik
         private byte choose = 0;
 
         //геттеры
+
+        // konung
+        public byte GetHealthKonung()
+        {
+            return HealthKonung;
+        }
+        public byte GetVillageManagment()
+        {
+            return VillageManagment;
+        }
+        public string GetStoryKonung()
+        {
+            return StoryKonung;
+        }
+        public string GetNameKonung()
+        {
+            return NameKonung;
+        }
+        public byte GetReligionKonung()
+        {
+            return ReligionKonung;
+        }
+        public byte GetRepressionKonung()
+        {
+            return RepressionKonung;
+        }
+
+        //
 
         public ushort GetEat()
         {
@@ -116,6 +159,34 @@ namespace Vik
 
 
         //сеттеры
+
+        // konung
+        public void SetHealthKonung(byte A)
+        {
+            HealthKonung = A;
+        }
+        public void SetVillageManagment(byte A)
+        {
+            VillageManagment = A;
+        }
+        public void SetStoryKonung(string A)
+        {
+            StoryKonung = A;
+        }
+        public void SetNameKonung(string A)
+        {
+            NameKonung = A;
+        }
+        public void SetReligionKonung(byte A)
+        {
+            ReligionKonung = A;
+        }
+        public void SetRepressionKonung(byte A)
+        {
+            RepressionKonung = A;
+        }
+
+        //
 
         public void SetEat(ushort A)
         {

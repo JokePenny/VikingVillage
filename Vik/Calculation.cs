@@ -73,5 +73,13 @@ namespace Vik
             health = 0;
             distance = 254;
         }
+
+        static public string ReligionChoose(byte relig)
+        {
+            if (relig == 0)
+                return "Язычник";
+            else
+                return "Христьянин";
+        }
     }
 }

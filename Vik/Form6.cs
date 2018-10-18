@@ -70,6 +70,7 @@ namespace Vik
             this.Visible = false;
             train.ShowDialog();
             this.Close();
+            this.Dispose();
         }
 
 
