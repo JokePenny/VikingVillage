@@ -19,7 +19,7 @@ namespace Vik
         private byte ReligionKonung; // 0 = язычник 1 = христьянин
         private byte RepressionKonung; // репрессии (подавление бунтов)
         //
-        private ushort eat = 100;
+        private ushort eat = 10;
         private ushort stone = 10;
         private ushort gold = 0;
         private ushort forest = 10;
@@ -31,6 +31,8 @@ namespace Vik
         private ushort speedPicking = 3000;
         private byte ReligionStatic = 100; // устойчивость религии, при торговле с иноземцами или неудачном конунге устойчивость будет падать
         private byte ReligionVillage = 0; // религия деревни (по дефолту язычники)
+        private double money = 0;
+        private byte Religion = 0; // религия деревни
 
         /// <summary>
         /// при устойчивости религии меньше 50, увеличиваются шансы
@@ -49,6 +51,9 @@ namespace Vik
 
         // флаг пользователя
         private byte choose = 0;
+
+        // коэффициент накрутки для магазина
+        private sbyte coefficient = 0;
 
         //геттеры
 
@@ -120,6 +125,14 @@ namespace Vik
         {
             return speedPicking;
         }
+        public double GetMoney()
+        {
+            return money;
+        }
+        public byte GetReligion()
+        {
+            return Religion;
+        }
 
         //макс
         public ushort GetEatMax()
@@ -155,6 +168,12 @@ namespace Vik
         public byte GetChoose()
         {
             return choose;
+        }
+
+        // магазин
+        public sbyte GetCoef()
+        {
+            return coefficient;
         }
 
 
@@ -228,6 +247,14 @@ namespace Vik
         {
             speedPicking = A;
         }
+        public void SetMoney(double A)
+        {
+            money = A;
+        }
+        public void SetReligion(byte A)
+        {
+            Religion = A;
+        }
 
         //макс
 
@@ -264,6 +291,12 @@ namespace Vik
         public void SetChoose(byte A)
         {
             choose = A;
+        }
+
+        //магазин
+        public void SetCoef(sbyte A)
+        {
+            coefficient = A;
         }
 
         public static ResourceVillage GetInstance()

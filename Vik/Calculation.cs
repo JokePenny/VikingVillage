@@ -81,5 +81,36 @@ namespace Vik
             else
                 return "Христьянин";
         }
+
+        // магазин
+
+        static public sbyte CoeffCalcul(sbyte coef)
+        {
+            if (coef > 50)
+                return 1;
+            else if (coef <= 50 && coef >= 0)
+                return 2;
+            else if (coef > -50 && coef < 0)
+                return 3;
+            else
+                return 4;
+        }
+
+        static public string Price(ushort price1, ushort price2, ushort price3, double money)
+        {
+            if (price1 + price2 + price3 > money)
+                return "Недостаточно денег!";
+            else
+                return "";
+        }
+
+        static public string Price(ushort price1, ushort price2, double money)
+        {
+            if (price1 + price2 > money)
+                return "Недостаточно денег!";
+            else
+                return "";
+        }
+
     }
 }

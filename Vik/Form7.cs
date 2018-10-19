@@ -19,7 +19,6 @@ namespace Vik
         private byte[] arrVillageManagment = new byte[3];
         private byte[] arrReligionKonung = new byte[3];
         private byte[] arrRepressionKonung = new byte[3];
-        private string Religion;
         public Form7()
         {
             InitializeComponent();
@@ -31,12 +30,9 @@ namespace Vik
                 arrReligionKonung[i] = Convert.ToByte(rnd.Next(0, 1));
                 arrRepressionKonung[i] = Convert.ToByte(rnd.Next(4, 9));
             }
-            Religion = Calculation.ReligionChoose(arrReligionKonung[0]);
-            t.SetToolTip(button1, "Здоровье конунга: " + arrHealthKonung[0].ToString() + "\n Управленчиские навыки: "+ arrVillageManagment[0].ToString() + "\n Уровень репрессии: " + arrRepressionKonung[0].ToString() +"\n Религия: "+ Religion);
-            Religion = Calculation.ReligionChoose(arrReligionKonung[1]);
-            t.SetToolTip(button2, "Здоровье конунга: " + arrHealthKonung[1].ToString() + "\n Управленчиские навыки: " + arrVillageManagment[1].ToString() + "\n Уровень репрессии: " + arrRepressionKonung[1].ToString() + "\n Религия: " + Religion);
-            Religion = Calculation.ReligionChoose(arrReligionKonung[2]);
-            t.SetToolTip(button3, "Здоровье конунга: " + arrHealthKonung[2].ToString() + "\n Управленчиские навыки: " + arrVillageManagment[2].ToString() + "\n Уровень репрессии: " + arrRepressionKonung[2].ToString() + "\n Религия: " + Religion);
+            t.SetToolTip(button1, "Здоровье конунга: " + arrHealthKonung[0].ToString() + "\n Управленчиские навыки: "+ arrVillageManagment[0].ToString() + "\n Уровень репрессии: " + arrRepressionKonung[0].ToString() +"\n Религия: "+ Calculation.ReligionChoose(arrReligionKonung[0]));
+            t.SetToolTip(button2, "Здоровье конунга: " + arrHealthKonung[1].ToString() + "\n Управленчиские навыки: " + arrVillageManagment[1].ToString() + "\n Уровень репрессии: " + arrRepressionKonung[1].ToString() + "\n Религия: " + Calculation.ReligionChoose(arrReligionKonung[1]));
+            t.SetToolTip(button3, "Здоровье конунга: " + arrHealthKonung[2].ToString() + "\n Управленчиские навыки: " + arrVillageManagment[2].ToString() + "\n Уровень репрессии: " + arrRepressionKonung[2].ToString() + "\n Религия: " + Calculation.ReligionChoose(arrReligionKonung[2]));
             using (StreamReader sr = new StreamReader("NameKonung.txt", System.Text.Encoding.Default))
             {
                 var list = new List<string>();
