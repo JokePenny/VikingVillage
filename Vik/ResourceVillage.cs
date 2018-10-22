@@ -21,7 +21,7 @@ namespace Vik
         //
         private ushort eat = 10;
         private ushort stone = 10;
-        private ushort gold = 0;
+        private ushort gold = 100;
         private ushort forest = 10;
         private ushort population = 5;
         private ushort boards = 0;
@@ -31,7 +31,7 @@ namespace Vik
         private ushort speedPicking = 3000;
         private byte ReligionStatic = 100; // устойчивость религии, при торговле с иноземцами или неудачном конунге устойчивость будет падать
         private byte ReligionVillage = 0; // религия деревни (по дефолту язычники)
-        private double money = 0;
+        private double money = 1000;
         private byte Religion = 0; // религия деревни
 
         /// <summary>
@@ -54,6 +54,16 @@ namespace Vik
 
         // коэффициент накрутки для магазина
         private sbyte coefficient = 0;
+
+        // поля для прокачки зданий и тд
+        private ushort[] SkilsEat = new ushort[5];
+        private ushort[] SkilsForest = new ushort[5];
+        private ushort[] SkilsStone = new ushort[5];
+        private ushort[] SkilsGold = new ushort[5];
+        private byte[] SkilsForestOut = new byte[2];
+        private byte[] SkilsStoneOut = new byte[2];
+        private byte[] SkilsGoldOut = new byte[2];
+        private byte[] SkilsPassiveBuilds = new byte[6];
 
         //геттеры
 
@@ -174,6 +184,40 @@ namespace Vik
         public sbyte GetCoef()
         {
             return coefficient;
+        }
+
+        // прокачка
+        public ushort GetSkilsEat(int i)
+        {
+            return SkilsEat[i];
+        }
+        public ushort GetSkilsForest(int i)
+        {
+            return SkilsForest[i];
+        }
+        public ushort GetSkilsStone(int i)
+        {
+            return SkilsStone[i];
+        }
+        public ushort GetSkilsGold(int i)
+        {
+            return SkilsGold[i];
+        }
+        public byte GetSkilsForestOut(int i)
+        {
+            return SkilsForestOut[i];
+        }
+        public byte GetSkilsStoneOut(int i)
+        {
+            return SkilsStoneOut[i];
+        }
+        public byte GetSkilsGoldOut(int i)
+        {
+            return SkilsGoldOut[i];
+        }
+        public byte GetSkilsPassiveBuilds(int i)
+        {
+            return SkilsPassiveBuilds[i];
         }
 
 
@@ -297,6 +341,40 @@ namespace Vik
         public void SetCoef(sbyte A)
         {
             coefficient = A;
+        }
+
+        // прокачка
+        public void SetSkilsEat(ushort A, int i)
+        {
+            SkilsEat[i] = A;
+        }
+        public void SetSkilsForest(ushort A, int i)
+        {
+            SkilsForest[i] = A;
+        }
+        public void SetSkilsStone(ushort A, int i)
+        {
+            SkilsStone[i] = A;
+        }
+        public void SetSkilsGold(ushort A, int i)
+        {
+            SkilsGold[i] = A;
+        }
+        public void SetSkilsForestOut(byte A, int i)
+        {
+            SkilsForestOut[i] = A;
+        }
+        public void SetSkilsStoneOut(byte A, int i)
+        {
+            SkilsStoneOut[i] = A;
+        }
+        public void SetSkilsGoldOut(byte A, int i)
+        {
+            SkilsGoldOut[i] = A;
+        }
+        public void SetSkilsPassiveBuilds(byte A, int i)
+        {
+            SkilsPassiveBuilds[i] = A;
         }
 
         public static ResourceVillage GetInstance()

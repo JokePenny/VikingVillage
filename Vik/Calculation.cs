@@ -112,5 +112,7 @@ namespace Vik
                 return "";
         }
 
+        // прокачка зданий
+
     }
 }

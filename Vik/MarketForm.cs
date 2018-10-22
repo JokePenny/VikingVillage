@@ -101,5 +101,10 @@ namespace Vik
         {
             label44.Text = Calculation.Price(Convert.ToUInt16(buy), Convert.ToUInt16(label17.Text), Village.GetMoney());
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

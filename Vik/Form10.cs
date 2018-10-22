@@ -128,5 +128,10 @@ namespace Vik
             train.ShowDialog();
             this.Close();
         }
+
+        private void pictureBox13_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

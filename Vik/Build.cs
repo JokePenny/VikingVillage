@@ -16,7 +16,6 @@ namespace Vik
         public Buildgoldmine[] Goldmine;
         public Buildquarry[] Quarry;
         public Buildsawmill[] Sawmill;
-        public Buildwatchtower[] Watchtower;
         public Buildfield[] Field;
         public Buildheadquarters[] Headquarters;
         public Buildhome[] Home;
@@ -36,47 +35,34 @@ namespace Vik
         {
             return Goldmine;
         }
-
         public Buildquarry[] GetQuarry()
         {
             return Quarry;
         }
-
         public Buildsawmill[] GetSawmill()
         {
             return Sawmill;
         }
-
-        public Buildwatchtower[] GetWatchtower()
-        {
-            return Watchtower;
-        }
-
         public Buildfield[] GetField()
         {
             return Field;
         }
-
         public Buildheadquarters[] GetHeadquarters()
         {
             return Headquarters;
         }
-
         public Buildhome[] GetHome()
         {
             return Home;
         }
-
         public Buildmarket[] GetMarket()
         {
             return Market;
         }
-
         public BuildWall[] GetWall()
         {
             return Wall;
         }
-
         public Buildstorage[] GetStorage()
         {
             return Storage;
@@ -88,47 +74,34 @@ namespace Vik
         {
             Goldmine = A;
         }
-
         public void SetQuarry(Buildquarry[] A)
         {
             Quarry = A;
         }
-
         public void SetSawmill(Buildsawmill[] A)
         {
             Sawmill = A;
         }
-
-        public void SetWatchtower(Buildwatchtower[] A)
-        {
-            Watchtower = A;
-        }
-
         public void SetField(Buildfield[] A)
         {
             Field = A;
         }
-
         public void SetHeadquarters(Buildheadquarters[] A)
         {
             Headquarters = A;
         }
-
         public void SetHome(Buildhome[] A)
         {
             Home = A;
         }
-
         public void SetMarket(Buildmarket[] A)
         {
             Market = A;
         }
-
         public void SetWall(BuildWall[] A)
         {
             Wall = A;
         }
-
         public void SetStorage(Buildstorage[] A)
         {
             Storage = A;

@@ -8,7 +8,7 @@ using System.Drawing;
 //using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
-
+using System.Media;
 
 namespace Vik
 {
@@ -20,6 +20,7 @@ namespace Vik
         private static FossilsStone StoneResources = new FossilsStone();
         private static FossilsGold GoldResources = new FossilsGold();
         private static ResourceVillage Village = ResourceVillage.GetInstance();
+        SoundPlayer Simple = new SoundPlayer(@"D:\01Programms\VS\Repository\Wik\Vik\Vik\Properties\Resources\soundGame.wav");
         private int[,] matrix = new int[30, 30];
         private byte[,] BuildMap = new byte[30, 30];
         private int[] buildX = new int[100];
@@ -30,10 +31,10 @@ namespace Vik
         public Form2()
         {
             InitializeComponent();
+            Simple.PlayLooping();
             Building.Goldmine = new Buildgoldmine[10];
             Building.Quarry = new Buildquarry[10];
             Building.Sawmill = new Buildsawmill[10];
-            Building.Watchtower = new Buildwatchtower[30];
             Building.Storage = new Buildstorage[10];
             Building.Field = new Buildfield[20];
             Building.Headquarters = new Buildheadquarters[1];
@@ -64,11 +65,6 @@ namespace Vik
             }
             for (byte j = 0; j < 30; j++)
             {
-                Building.Watchtower[j] = new Buildwatchtower();
-                Building.Watchtower[j].SetX(254);
-                Building.Watchtower[j].SetY(254);
-                Building.Watchtower[j].SetHealth(0);
-                Building.Watchtower[j].SetDistance(254);
                 Building.Home[j] = new Buildhome();
                 Building.Home[j].SetX(254);
                 Building.Home[j].SetY(254);
@@ -93,12 +89,44 @@ namespace Vik
             this.WindowState = FormWindowState.Maximized;
             ToolTip t = new ToolTip();
             //t.SetToolTip(button2, "Подсказка для TextBox");
-            int i = 0;
-            for (; i < 30; i++)
+            for (int i = 0; i < 30; i++)
             {
                 arr[i, 0] = addButton(i, 0);
                 for (int i2 = 1; i2 < 17; i2++)
                     arr[i, i2] = addButton(i, i2);
+            }
+
+            for(int i = 0; i < 6; i++)
+            {
+                if(i == 0)
+                {
+                    Village.SetSkilsEat(0, i);
+                    Village.SetSkilsForest(0, i);
+                    Village.SetSkilsStone(0, i);
+                    Village.SetSkilsGold(0, i);
+                }
+                if(i < 2)
+                {
+                    Village.SetSkilsForestOut(1, i);
+                    Village.SetSkilsStoneOut(1, i);
+                    Village.SetSkilsGoldOut(1, i);
+                }
+                if(i > 1 && i < 5)
+                {
+                    Village.SetSkilsEat(1, i);
+                    Village.SetSkilsForest(1, i);
+                    Village.SetSkilsStone(1, i);
+                    Village.SetSkilsGold(1, i);
+                }
+                if(i == 1)
+                {
+                    Village.SetSkilsEat(5, i);
+                    Village.SetSkilsForest(5, i);
+                    Village.SetSkilsStone(5, i);
+                    Village.SetSkilsGold(5, i);
+                }
+                if(i < 6)
+                    Village.SetSkilsPassiveBuilds(1, i);
             }
             matrix[0, 0] = 1;
             matrix[29, 0] = 1;
@@ -164,7 +192,7 @@ namespace Vik
             matrix[7, 2] = 1;
         }
 
-        public static Button[,] arr = new Button[30, 30];
+            public static Button[,] arr = new Button[30, 30];
 
         private void b_Click(object sender, EventArgs e)
         {
@@ -173,7 +201,7 @@ namespace Vik
             byte treX = Convert.ToByte(p.X);
             if (BuildMap[p.X, p.Y] == 0)
             {
-                if (Village.GetChoose() == 1) // создание базы
+                if (Village.GetChoose() == 1) // создание базы - добывает еду
                 {
                     Form7 f = new Form7();
                     f.ShowDialog();
@@ -217,7 +245,7 @@ namespace Vik
                     BuildMap[p.X, p.Y] = Building.Headquarters[0].GetID();
                     Village.SetChoose(254);
                 }
-                if (Village.GetChoose() == 2 && Village.GetForest() >= 8) // лесопилка
+                if (Village.GetChoose() == 2 && Village.GetForest() >= 8) // лагерь лесорубов - добывает лес
                 {
                     byte numberBuild = 0;
                     for(byte i = 0; i < 254; i++)
@@ -239,7 +267,7 @@ namespace Vik
                     matrix[p.X, p.Y] = 2;
                     BuildMap[p.X, p.Y] = Building.Sawmill[numberBuild].GetID();
                 }
-                if (Village.GetChoose() == 3 && Village.GetStone() >= 7) // шахта
+                if (Village.GetChoose() == 3 && Village.GetStone() >= 7) // шахта - добывает камень
                 {
                     byte numberBuild = 0;
                     for (byte i = 0; i < 254; i++)
@@ -261,7 +289,7 @@ namespace Vik
                     matrix[p.X, p.Y] = 2;
                     BuildMap[p.X, p.Y] = Building.Quarry[numberBuild].GetID();
                 }
-                if (Village.GetChoose() == 4 && Village.GetForest() >= 20 && Village.GetStone() >= 20) // золотой рудник
+                if (Village.GetChoose() == 4 && Village.GetForest() >= 20 && Village.GetStone() >= 20) // золотой рудник - добывает золото
                 {
                     byte numberBuild = 0;
                     for (byte i = 0; i < 254; i++)
@@ -285,7 +313,7 @@ namespace Vik
                     matrix[p.X, p.Y] = 2;
                     BuildMap[p.X, p.Y] = Building.Goldmine[numberBuild].GetID();
                 }
-                if (Village.GetChoose() == 5 && Village.GetForest() >= 10 && Village.GetStone() >= 5) // склад
+                if (Village.GetChoose() == 5 && Village.GetForest() >= 10 && Village.GetStone() >= 5) // склад - увеличивает максимум хранимых ресурсов
                 {
                     byte numberBuild = 0;
                     for (byte i = 0; i < 254; i++)
@@ -314,7 +342,7 @@ namespace Vik
                     matrix[p.X, p.Y] = 2;
                     BuildMap[p.X, p.Y] = Building.Storage[numberBuild].GetID();
                 }
-                if (Village.GetChoose() == 6 && Village.GetForest() >= 10 && Village.GetStone() >= 5) // пшеничное поле
+                if (Village.GetChoose() == 6 && Village.GetForest() >= 10 && Village.GetStone() >= 5) // пшеничное поле - ускоряет добычу еды
                 {
                     byte numberBuild = 0;
                     for (byte i = 0; i < 254; i++)
@@ -336,7 +364,7 @@ namespace Vik
                     Building.Field[numberBuild].SetImage();
                     BuildMap[p.X, p.Y] = Building.Field[numberBuild].GetID();
                 }
-                if (Village.GetChoose() == 7 && Village.GetForest() >= 10 && Village.GetStone() >= 5) // дом
+                if (Village.GetChoose() == 7 && Village.GetForest() >= 10 && Village.GetStone() >= 5) // дом - обеспечивает максимум населения
                 {
                     byte numberBuild = 0;
                     for (byte i = 0; i < 254; i++)
@@ -359,24 +387,30 @@ namespace Vik
                     matrix[p.X, p.Y] = 2;
                     BuildMap[p.X, p.Y] = Building.Home[numberBuild].GetID();
                 }
-                if (Village.GetChoose() == 8) // дозорная башня
+                if (Village.GetChoose() == 8) // лесопилка
                 {
                     byte numberBuild = 0;
                     for (byte i = 0; i < 254; i++)
-                        if (Calculation.CheckBuildCreate(Building.Watchtower[i].GetX(), i) == i)
+                        if (Calculation.CheckBuildCreate(Building.Home[i].GetX(), i) == i)
                         {
                             numberBuild = i;
                             i = 254;
                         }
-                    Building.Watchtower[numberBuild].SetX(Convert.ToByte(p.X));
-                    Building.Watchtower[numberBuild].SetY(Convert.ToByte(p.Y));
-                    Thread towerthread = new Thread(delegate () { Tower(p.X, p.Y); }); ;
-                    towerthread.Start();
+                    Building.Home[numberBuild].SetX(Convert.ToByte(p.X));
+                    Building.Home[numberBuild].SetY(Convert.ToByte(p.Y));
+                    Village.SetPopulationMax(Convert.ToUInt16(Village.GetPopulationMax() + 15));
+                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 10));
+                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 5));
+                    label3.Text = Village.GetForest().ToString();
+                    label4.Text = Village.GetStone().ToString();
+                    label15.Text = Village.GetPopulationMax().ToString();
+                    //arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_124.png");
+                    Building.Home[numberBuild].SetImage();
                     arr[p.X, p.Y].Enabled = false;
-                    matrix[p.X, p.Y] = 7;
-                    BuildMap[p.X, p.Y] = Building.Watchtower[numberBuild].GetID();
+                    matrix[p.X, p.Y] = 2;
+                    BuildMap[p.X, p.Y] = Building.Home[numberBuild].GetID();
                 }
-                if (Village.GetChoose() == 9 && Village.GetForest() >= 15)
+                if (Village.GetChoose() == 9 && Village.GetForest() >= 15) // камнетесы - вытесывает блоки из булыжников
                 {
                     Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
                     Village.SetStone(Convert.ToUInt16(Village.GetSpeedPicking() - 100));
@@ -388,7 +422,7 @@ namespace Vik
                     //
                     // нет айди
                 }
-                if (Village.GetChoose() == 10 && Village.GetForest() >= 15)
+                if (Village.GetChoose() == 10 && Village.GetForest() >= 15) // чеканка монет - чеканит деньги из золота
                 {
                     Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
                     Village.SetStone(Convert.ToUInt16(Village.GetSpeedPicking() - 100));
@@ -400,7 +434,7 @@ namespace Vik
                     //
                     // нет айди
                 }
-                if (Village.GetChoose() == 11 && Village.GetForest() >= 15)
+                if (Village.GetChoose() == 11 && Village.GetForest() >= 15) // амбар - уменьшает шанс пропажи еды
                 {
                     Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
                     Village.SetStone(Convert.ToUInt16(Village.GetSpeedPicking() - 100));
@@ -412,7 +446,7 @@ namespace Vik
                     //
                     // нет айди
                 }
-                if (Village.GetChoose() == 12 && Village.GetForest() >= 15)
+                if (Village.GetChoose() == 12 && Village.GetForest() >= 15) // святилище - дает плюс к продвижении нужной веры
                 {
                     Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
                     Village.SetStone(Convert.ToUInt16(Village.GetSpeedPicking() - 100));
@@ -556,6 +590,30 @@ namespace Vik
                     arr[p.X, p.Y].Enabled = false;
                     matrix[p.X, p.Y] = 7;
                     BuildMap[p.X, p.Y] = Building.Wall[numberBuild].GetID();
+                }
+                if (Village.GetChoose() == 12 && Village.GetForest() >= 15) // порт - дает доступ к торговле с иноземцами
+                {
+                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
+                    Village.SetStone(Convert.ToUInt16(Village.GetSpeedPicking() - 100));
+                    label3.Text = Village.GetForest().ToString();
+                    arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_219.png");
+                    arr[p.X, p.Y].Enabled = false;
+                    matrix[p.X, p.Y] = 7;
+                    // нет айди
+                    //
+                    // нет айди
+                }
+                if (Village.GetChoose() == 12 && Village.GetForest() >= 15) // казармы - уменьшают шанс возникновения бунтов
+                {
+                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
+                    Village.SetStone(Convert.ToUInt16(Village.GetSpeedPicking() - 100));
+                    label3.Text = Village.GetForest().ToString();
+                    arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_219.png");
+                    arr[p.X, p.Y].Enabled = false;
+                    matrix[p.X, p.Y] = 7;
+                    // нет айди
+                    //
+                    // нет айди
                 }
             }
         }
