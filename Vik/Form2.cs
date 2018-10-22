@@ -23,10 +23,6 @@ namespace Vik
         SoundPlayer Simple = new SoundPlayer(@"D:\01Programms\VS\Repository\Wik\Vik\Vik\Properties\Resources\soundGame.wav");
         private int[,] matrix = new int[30, 30];
         private byte[,] BuildMap = new byte[30, 30];
-        private int[] buildX = new int[100];
-        private int[] buildY = new int[100];
-        private int[] enemyX = new int[50];
-        private int[] enemyY = new int[50];
         private int[,] wall = new int[30, 30];
         public Form2()
         {
@@ -36,11 +32,19 @@ namespace Vik
             Building.Quarry = new Buildquarry[10];
             Building.Sawmill = new Buildsawmill[10];
             Building.Storage = new Buildstorage[10];
-            Building.Field = new Buildfield[20];
-            Building.Headquarters = new Buildheadquarters[1];
-            Building.Home = new Buildhome[30];
-            Building.Market = new Buildmarket[1];
-            Building.Wall = new BuildWall[200];
+            Building.Field = new Buildfield[10];
+            Building.Wall = new BuildWall[10];
+            Building.Home = new Buildhome[20];
+            Building.Sanctuary = new BuildSanctuary[10];
+            Building.Barn = new BuildBarn[10];
+            Building.Barracks = new BuildBarracks[10];
+            Building.Headquarters = new Buildheadquarters();
+            Building.Port = new BuildPort();
+            Building.GoldRec = new BuildGoldRec();
+            Building.StoneRec = new BuildStoneRec();
+            Building.WoodRec = new BuildWoodRec();
+            Building.Market = new Buildmarket();
+            
             for(byte j = 0; j < 10; j++)
             {
                 Building.Goldmine[j] = new Buildgoldmine();
@@ -59,26 +63,35 @@ namespace Vik
                 Building.Sawmill[j].SetHealth(0);
                 Building.Sawmill[j].SetDistance(254);
                 Building.Storage[j] = new Buildstorage();
-                Building.Sawmill[j].SetX(254);
-                Building.Sawmill[j].SetY(254);
-                Building.Sawmill[j].SetHealth(0);
+                Building.Storage[j].SetX(254);
+                Building.Storage[j].SetY(254);
+                Building.Storage[j].SetHealth(0);
+                Building.Barn[j] = new BuildBarn();
+                Building.Barn[j].SetX(254);
+                Building.Barn[j].SetY(254);
+                Building.Barn[j].SetHealth(0);
+                Building.Barracks[j] = new BuildBarracks();
+                Building.Barracks[j].SetX(254);
+                Building.Barracks[j].SetY(254);
+                Building.Barracks[j].SetHealth(0);
+                Building.Sanctuary[j] = new BuildSanctuary();
+                Building.Sanctuary[j].SetX(254);
+                Building.Sanctuary[j].SetY(254);
+                Building.Sanctuary[j].SetHealth(0);
             }
-            for (byte j = 0; j < 30; j++)
+            for (byte j = 0; j < 10; j++)
             {
                 Building.Home[j] = new Buildhome();
                 Building.Home[j].SetX(254);
                 Building.Home[j].SetY(254);
                 Building.Home[j].SetHealth(0);
-            }
-            for (byte j = 0; j < 20; j++)
-            {
                 Building.Field[j] = new Buildfield();
                 Building.Field[j].SetX(254);
                 Building.Field[j].SetY(254);
                 Building.Field[j].SetHealth(0);
                 Building.Field[j].SetDistance(254);
             }
-            for (byte j = 0; j < 100; j++)
+            for (byte j = 0; j < 10; j++)
             {
                 Building.Wall[j] = new BuildWall();
                 Building.Wall[j].SetX(254);
@@ -88,7 +101,6 @@ namespace Vik
 
             this.WindowState = FormWindowState.Maximized;
             ToolTip t = new ToolTip();
-            //t.SetToolTip(button2, "Подсказка для TextBox");
             for (int i = 0; i < 30; i++)
             {
                 arr[i, 0] = addButton(i, 0);
@@ -192,7 +204,7 @@ namespace Vik
             matrix[7, 2] = 1;
         }
 
-            public static Button[,] arr = new Button[30, 30];
+        public static Button[,] arr = new Button[30, 30];
 
         private void b_Click(object sender, EventArgs e)
         {
@@ -206,9 +218,9 @@ namespace Vik
                     Form7 f = new Form7();
                     f.ShowDialog();
                     // определяем коорд базы
-                    Building.Headquarters[0] = new Buildheadquarters();
-                    Building.Headquarters[0].SetX(Convert.ToByte(p.X));
-                    Building.Headquarters[0].SetY(Convert.ToByte(p.Y));
+                    Building.Headquarters = new Buildheadquarters();
+                    Building.Headquarters.SetX(Convert.ToByte(p.X));
+                    Building.Headquarters.SetY(Convert.ToByte(p.Y));
                     byte x = 0;
                     for (byte i = 0; i < x + 1; i++)
                     {
@@ -223,13 +235,13 @@ namespace Vik
                         if (treY == 0 && treX == 0)
                         {
                             x++;
-                            Building.Headquarters[0].SetDistance(x);
+                            Building.Headquarters.SetDistance(x);
                             i = 254;
                         }
                         else
                             x++;
                     }
-                    Thread eatthread = new Thread(delegate () { Eat(Building.Headquarters[0].GetDistance()); }); ;
+                    Thread eatthread = new Thread(delegate () { Eat(Building.Headquarters.GetDistance()); }); ;
                     eatthread.Start();
                     Thread populationthread = new Thread(Population);
                     populationthread.Start();
@@ -239,10 +251,10 @@ namespace Vik
                     daythread.Start();
                     Thread gameoverthread = new Thread(GameOver);
                     gameoverthread.Start();
-                    Building.Headquarters[0].SetImage();
+                    Building.Headquarters.SetImage();
                     arr[p.X, p.Y].Enabled = false;
                     matrix[p.X, p.Y] = 5;
-                    BuildMap[p.X, p.Y] = Building.Headquarters[0].GetID();
+                    BuildMap[p.X, p.Y] = Building.Headquarters.GetID();
                     Village.SetChoose(254);
                 }
                 if (Village.GetChoose() == 2 && Village.GetForest() >= 8) // лагерь лесорубов - добывает лес
@@ -258,7 +270,7 @@ namespace Vik
                     Building.Sawmill[numberBuild].SetY(Convert.ToByte(p.Y));
                     Village.SetForest(Convert.ToUInt16(Village.GetForest() - 8));
                     label3.Text = Village.GetForest().ToString();
-                    Building.Sawmill[numberBuild].SetDistance(Calculation.DistanceCalc(treX, treY, ForestResources.GetX(), ForestResources.GetX(), Building.Headquarters[0].GetX(), Building.Headquarters[0].GetY()));
+                    Building.Sawmill[numberBuild].SetDistance(Calculation.DistanceCalc(treX, treY, ForestResources.GetX(), ForestResources.GetY(), Building.Headquarters.GetX(), Building.Headquarters.GetY()));
                     Thread forestthread = new Thread(delegate () { Forest(Building.Sawmill[numberBuild].GetDistance()); }); ;
                     forestthread.Start();
                     //arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_218.png");
@@ -280,7 +292,7 @@ namespace Vik
                     Building.Quarry[numberBuild].SetY(Convert.ToByte(p.Y));
                     Village.SetStone(Convert.ToUInt16(Village.GetStone() - 7));
                     label4.Text = Village.GetStone().ToString();
-                    Building.Quarry[numberBuild].SetDistance(Calculation.DistanceCalc(treX, treY, StoneResources.GetX(), StoneResources.GetX(), Building.Headquarters[0].GetX(), Building.Headquarters[0].GetY()));
+                    Building.Quarry[numberBuild].SetDistance(Calculation.DistanceCalc(treX, treY, StoneResources.GetX(), StoneResources.GetY(), Building.Headquarters.GetX(), Building.Headquarters.GetY()));
                     Thread stonethread = new Thread(delegate () { Stone(Building.Quarry[numberBuild].GetDistance()); }); ;
                     stonethread.Start();
                     //arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_155.png");
@@ -302,7 +314,7 @@ namespace Vik
                     Building.Goldmine[numberBuild].SetY(Convert.ToByte(p.Y));
                     Village.SetForest(Convert.ToUInt16(Village.GetForest() - 20));
                     Village.SetStone(Convert.ToUInt16(Village.GetStone() - 20));
-                    Building.Goldmine[numberBuild].SetDistance(Calculation.DistanceCalc(treX, treY, GoldResources.GetX(), GoldResources.GetX(), Building.Headquarters[0].GetX(), Building.Headquarters[0].GetY()));
+                    Building.Goldmine[numberBuild].SetDistance(Calculation.DistanceCalc(treX, treY, GoldResources.GetX(), GoldResources.GetY(), Building.Headquarters.GetX(), Building.Headquarters.GetY()));
                     Thread goldthread = new Thread(delegate () { Gold(Building.Goldmine[numberBuild].GetDistance()); }); ;
                     goldthread.Start();
                     //arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_279.png");
@@ -387,76 +399,98 @@ namespace Vik
                     matrix[p.X, p.Y] = 2;
                     BuildMap[p.X, p.Y] = Building.Home[numberBuild].GetID();
                 }
-                if (Village.GetChoose() == 8) // лесопилка
+                if (Village.GetChoose() == 8 && Village.GetStone() >= 15) // лесопилка
+                {
+                    Building.WoodRec = new BuildWoodRec();
+                    Building.WoodRec.SetX(Convert.ToByte(p.X));
+                    Building.WoodRec.SetY(Convert.ToByte(p.Y));
+                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 15));
+                    label4.Text = Village.GetStone().ToString();
+                    Building.WoodRec.SetDistance(Calculation.DistanceCalc(treX, treY, Building.Headquarters.GetX(), Building.Headquarters.GetY()));
+                    Thread woodrecthread = new Thread(delegate () { Recforest(Building.WoodRec.GetDistance()); }); ;
+                    woodrecthread.Start();
+                    //arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_124.png");
+                    // нужен метод-поток для добычи
+                    Building.WoodRec.SetImage();
+                    arr[p.X, p.Y].Enabled = false;
+                    matrix[p.X, p.Y] = 2;
+                    BuildMap[p.X, p.Y] = Building.WoodRec.GetID();
+                }
+                if (Village.GetChoose() == 9 && Village.GetForest() >= 15) // камнетесы - вытесывает блоки из булыжников
+                {
+                    Building.StoneRec = new BuildStoneRec();
+                    Building.StoneRec.SetX(Convert.ToByte(p.X));
+                    Building.StoneRec.SetY(Convert.ToByte(p.Y));
+                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
+                    label3.Text = Village.GetForest().ToString();
+                    Building.StoneRec.SetDistance(Calculation.DistanceCalc(treX, treY, Building.Headquarters.GetX(), Building.Headquarters.GetY()));
+                    Thread stonerecthread = new Thread(delegate () { Recstone(Building.StoneRec.GetDistance()); }); ;
+                    stonerecthread.Start();
+                    //arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_186.png");
+                    Building.StoneRec.SetImage();
+                    arr[p.X, p.Y].Enabled = false;
+                    matrix[p.X, p.Y] = 7;
+                    BuildMap[p.X, p.Y] = Building.StoneRec.GetID();
+                }
+                if (Village.GetChoose() == 10 && Village.GetForest() >= 15 && Village.GetStone() >= 15 && Village.GetGold() >= 5) // чеканка монет - чеканит деньги из золота
+                {
+                    Building.GoldRec = new BuildGoldRec();
+                    Building.GoldRec.SetX(Convert.ToByte(p.X));
+                    Building.GoldRec.SetY(Convert.ToByte(p.Y));
+                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
+                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 15));
+                    Village.SetGold(Convert.ToUInt16(Village.GetGold() - 5));
+                    label3.Text = Village.GetForest().ToString();
+                    label4.Text = Village.GetStone().ToString();
+                    label5.Text = Village.GetGold().ToString();
+                    Building.GoldRec.SetDistance(Calculation.DistanceCalc(treX, treY, Building.Headquarters.GetX(), Building.Headquarters.GetY()));
+                    Thread goldrecthread = new Thread(delegate () { Recgold(Building.GoldRec.GetDistance()); }); ;
+                    goldrecthread.Start();
+                    //arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_245.png");///////////////////
+                    Building.GoldRec.SetImage();
+                    arr[p.X, p.Y].Enabled = false;
+                    matrix[p.X, p.Y] = 7;
+                    BuildMap[p.X, p.Y] = Building.GoldRec.GetID();
+                }
+                if (Village.GetChoose() == 11 && Village.GetForest() >= 15) // амбар - уменьшает шанс пропажи еды
                 {
                     byte numberBuild = 0;
                     for (byte i = 0; i < 254; i++)
-                        if (Calculation.CheckBuildCreate(Building.Home[i].GetX(), i) == i)
+                        if (Calculation.CheckBuildCreate(Building.Barn[i].GetX(), i) == i)
                         {
                             numberBuild = i;
                             i = 254;
                         }
-                    Building.Home[numberBuild].SetX(Convert.ToByte(p.X));
-                    Building.Home[numberBuild].SetY(Convert.ToByte(p.Y));
-                    Village.SetPopulationMax(Convert.ToUInt16(Village.GetPopulationMax() + 15));
-                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 10));
-                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 5));
-                    label3.Text = Village.GetForest().ToString();
-                    label4.Text = Village.GetStone().ToString();
-                    label15.Text = Village.GetPopulationMax().ToString();
-                    //arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_124.png");
-                    Building.Home[numberBuild].SetImage();
-                    arr[p.X, p.Y].Enabled = false;
-                    matrix[p.X, p.Y] = 2;
-                    BuildMap[p.X, p.Y] = Building.Home[numberBuild].GetID();
-                }
-                if (Village.GetChoose() == 9 && Village.GetForest() >= 15) // камнетесы - вытесывает блоки из булыжников
-                {
+                    Building.Barn[numberBuild].SetX(Convert.ToByte(p.X));
+                    Building.Barn[numberBuild].SetY(Convert.ToByte(p.Y));
                     Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
-                    Village.SetStone(Convert.ToUInt16(Village.GetSpeedPicking() - 100));
+                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 10));
                     label3.Text = Village.GetForest().ToString();
-                    arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_186.png");
+                    //arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_215.png");
+                    Building.Barn[numberBuild].SetImage();
                     arr[p.X, p.Y].Enabled = false;
                     matrix[p.X, p.Y] = 7;
-                    // нет айди
-                    //
-                    // нет айди
-                }
-                if (Village.GetChoose() == 10 && Village.GetForest() >= 15) // чеканка монет - чеканит деньги из золота
-                {
-                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
-                    Village.SetStone(Convert.ToUInt16(Village.GetSpeedPicking() - 100));
-                    label3.Text = Village.GetForest().ToString();
-                    arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_245.png");///////////////////
-                    arr[p.X, p.Y].Enabled = false;
-                    matrix[p.X, p.Y] = 7;
-                    // нет айди
-                    //
-                    // нет айди
-                }
-                if (Village.GetChoose() == 11 && Village.GetForest() >= 15) // амбар - уменьшает шанс пропажи еды
-                {
-                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
-                    Village.SetStone(Convert.ToUInt16(Village.GetSpeedPicking() - 100));
-                    label3.Text = Village.GetForest().ToString();
-                    arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_215.png");
-                    arr[p.X, p.Y].Enabled = false;
-                    matrix[p.X, p.Y] = 7;
-                    // нет айди
-                    //
-                    // нет айди
+                    BuildMap[p.X, p.Y] = Building.Barn[numberBuild].GetID();
                 }
                 if (Village.GetChoose() == 12 && Village.GetForest() >= 15) // святилище - дает плюс к продвижении нужной веры
                 {
+                    byte numberBuild = 0;
+                    for (byte i = 0; i < 254; i++)
+                        if (Calculation.CheckBuildCreate(Building.Sanctuary[i].GetX(), i) == i)
+                        {
+                            numberBuild = i;
+                            i = 254;
+                        }
+                    Building.Sanctuary[numberBuild].SetX(Convert.ToByte(p.X));
+                    Building.Sanctuary[numberBuild].SetY(Convert.ToByte(p.Y));
                     Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
-                    Village.SetStone(Convert.ToUInt16(Village.GetSpeedPicking() - 100));
+                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 10));
                     label3.Text = Village.GetForest().ToString();
-                    arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_219.png");
+                    //arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_219.png");
+                    Building.Sanctuary[numberBuild].SetImage();
                     arr[p.X, p.Y].Enabled = false;
                     matrix[p.X, p.Y] = 7;
-                    // нет айди
-                    //
-                    // нет айди
+                    BuildMap[p.X, p.Y] = Building.Sanctuary[numberBuild].GetID();
                 }
                 if (Village.GetChoose() == 13 && Village.GetForest() >= 1) // стена
                 {
@@ -468,6 +502,8 @@ namespace Vik
                             i = 254;
                         }
                     Village.SetForest(Convert.ToUInt16(Village.GetForest() - 1));
+                    Building.Wall[numberBuild].SetX(Convert.ToByte(p.X));
+                    Building.Wall[numberBuild].SetY(Convert.ToByte(p.Y));
                     label3.Text = Village.GetForest().ToString();
                     int direction = 0;
                     int[] side = new int[4];
@@ -591,29 +627,53 @@ namespace Vik
                     matrix[p.X, p.Y] = 7;
                     BuildMap[p.X, p.Y] = Building.Wall[numberBuild].GetID();
                 }
-                if (Village.GetChoose() == 12 && Village.GetForest() >= 15) // порт - дает доступ к торговле с иноземцами
+                if (Village.GetChoose() == 14 && Village.GetForest() >= 15) // порт - дает доступ к торговле с иноземцами
                 {
+                    Building.Port = new BuildPort();
+                    Building.Port.SetX(Convert.ToByte(p.X));
+                    Building.Port.SetY(Convert.ToByte(p.Y));
                     Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
-                    Village.SetStone(Convert.ToUInt16(Village.GetSpeedPicking() - 100));
+                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 10));
                     label3.Text = Village.GetForest().ToString();
-                    arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_219.png");
+                    //arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_219.png");
+                    Building.Port.SetImage();
                     arr[p.X, p.Y].Enabled = false;
                     matrix[p.X, p.Y] = 7;
-                    // нет айди
-                    //
-                    // нет айди
+                    BuildMap[p.X, p.Y] = Building.Port.GetID();
                 }
-                if (Village.GetChoose() == 12 && Village.GetForest() >= 15) // казармы - уменьшают шанс возникновения бунтов
+                if (Village.GetChoose() == 15 && Village.GetForest() >= 15) // казармы - уменьшают шанс возникновения бунтов
                 {
+                    byte numberBuild = 0;
+                    for (byte i = 0; i < 254; i++)
+                        if (Calculation.CheckBuildCreate(Building.Sanctuary[i].GetX(), i) == i)
+                        {
+                            numberBuild = i;
+                            i = 254;
+                        }
+                    Building.Barracks[numberBuild].SetX(Convert.ToByte(p.X));
+                    Building.Barracks[numberBuild].SetY(Convert.ToByte(p.Y));
                     Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
-                    Village.SetStone(Convert.ToUInt16(Village.GetSpeedPicking() - 100));
+                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 10));
                     label3.Text = Village.GetForest().ToString();
-                    arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_219.png");
+                    //arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_219.png");
+                    Building.Barracks[numberBuild].SetImage();
                     arr[p.X, p.Y].Enabled = false;
                     matrix[p.X, p.Y] = 7;
-                    // нет айди
-                    //
-                    // нет айди
+                    BuildMap[p.X, p.Y] = Building.Barracks[numberBuild].GetID();
+                }
+                if (Village.GetChoose() == 16 && Village.GetForest() >= 15) // рынок купцов
+                {
+                    Building.Market = new Buildmarket();
+                    Building.Market.SetX(Convert.ToByte(p.X));
+                    Building.Market.SetY(Convert.ToByte(p.Y));
+                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 15));
+                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 10));
+                    label3.Text = Village.GetForest().ToString();
+                    //arr[p.X, p.Y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_219.png");
+                    Building.Market.SetImage();
+                    arr[p.X, p.Y].Enabled = false;
+                    matrix[p.X, p.Y] = 7;
+                    BuildMap[p.X, p.Y] = Building.Market.GetID();
                 }
             }
         }
@@ -1003,214 +1063,87 @@ namespace Vik
                     Village.SetPassedDay(Convert.ToByte(Village.GetPassedDay() + 1));
                     label20.Invoke(new Action(() => label20.Text = Village.GetPassedDay().ToString()));
                 }
-                if (Village.GetPassedDay() == 7 && Data.enemyOn == 1)
-                {
-                    Data.enemyVolume--;
-                    if (Data.enemyVolume == 0)
-                    {
-                        Data.enemyOn = 0;
-                        Data.enemyVolume = 3;
-                    }
-                }
             }
         }
 
-        private void Enemy()
+        // потоки
+
+        private void Revolt(int a)
         {
-            int[] distance = new int[50];
-            int x = 1;
-            int valueX = 0;
-            int valueY = 0;
-            int number = Data.enemyCount;
-            Data.enemyCount++;
-            Random rndY = new Random();
-            Random rndX = new Random();
-            Random rnd = new Random();
-            int u = rnd.Next(0, 1);
-            if(u == 0)
-            {
-                valueX = 29;
-                valueY = rndY.Next(1, 15);
-                enemyY[number] = valueY;
-                enemyX[number] = valueX;
-            }
-            else
-            {
-                valueX = rndX.Next(1, 28);
-                valueY = 16;
-                enemyY[number] = valueY;
-                enemyX[number] = valueX;
-            }
-            matrix[valueX, valueY] = 3;
-
-            if ((valueY < 16 && valueX == 29) || (valueY == 16 && valueX < 29))
-            {
-                int coordY = valueY;
-                int coordX = valueX;
-                while(Data.exit != 1)
-                {
-                    for(int j = 0; j < Data.builds; j++)
-                    {
-                        arr[valueX, valueY].Invoke(new Action(() => arr[valueX, valueY].Text = "W"));
-                        coordY = valueY;
-                        coordX = valueX;
-                        x = 1;
-                        for (int i = 0; i < x; i++)
-                        {
-                            if (coordY > buildY[j])
-                                coordY--;
-                            else if(coordY < buildY[j])
-                                coordY++;
-                            if (coordX > buildX[j])
-                                coordX--;
-                            else if (coordX < buildX[j])
-                                coordX++;
-                            if (coordY == buildY[j] && coordX == buildX[j])
-                            {
-                                distance[j]++;
-                            }
-                            else
-                            {
-                                x++;
-                                distance[j]++;
-                            }
-                        }
-                    }
-
-                    int minIndex = 0;
-                    for (int i = 0; i < Data.builds; i++)
-                    {
-                        if(distance[minIndex] > distance[i])
-                        {
-                            minIndex = i;
-                        }
-                    }
-                    x = 1;
-                    for (int i = 0; i < x; i++)
-                    {
-                        Thread.Sleep(1000);
-                        arr[valueX, valueY].Invoke(new Action(() => arr[valueX, valueY].Text = ""));
-                        if (valueY > buildY[minIndex])
-                            valueY--;
-                        else if (valueY < buildY[minIndex])
-                            valueY++;
-                        if (valueX > buildX[minIndex])
-                            valueX--;
-                        else if (valueX < buildX[minIndex])
-                            valueX++;
-                        enemyY[number] = valueY;
-                        enemyX[number] = valueX;
-                        matrix[valueX, valueY] = 3;
-                        if ((valueX + 1 == buildX[minIndex] && valueY == buildY[minIndex])
-                            || (valueX == buildX[minIndex] && valueY + 1 == buildY[minIndex])
-                            || (valueX + 1 == buildX[minIndex] && valueY + 1 == buildY[minIndex])
-                            || (valueX - 1 == buildX[minIndex] && valueY == buildY[minIndex])
-                            || (valueX == buildX[minIndex] && valueY - 1 == buildY[minIndex])
-                            || (valueX - 1 == buildX[minIndex] && valueY - 1 == buildY[minIndex]))
-                        {
-                            arr[valueX, valueY].Invoke(new Action(() => arr[valueX, valueY].Text = "W"));
-                            while (matrix[buildX[minIndex], buildY[minIndex]] > 0)
-                            {
-                                Thread.Sleep(1000);
-                                matrix[buildX[minIndex], buildY[minIndex]]--;
-                            }
-                        }
-
-                        if (valueY == buildY[minIndex] && valueX == buildX[minIndex])
-                        {
-                            arr[valueX, valueY].Invoke(new Action(() => arr[valueX, valueY].Text = "W"));
-                            for(int a = minIndex; a < Data.builds; a++)
-                            {
-                                buildY[a] = buildY[a + 1];
-                                buildX[a] = buildX[a + 1];
-                            }
-                            if(Data.builds > 0)
-                                Data.builds--;
-                        }
-                        else
-                        {
-                            arr[valueX, valueY].Invoke(new Action(() => arr[valueX, valueY].Text = "W"));
-                            x++;
-                        }
-                    }
-
-                }
-                //Data.enemyOn = 1;
-            }
-
-        }
-
-        private void Tower(int x, int y)
-        {
-            int coordY = y;
-            int coordX = x;
-            int exit;
-            int[] distance = new int[30];
             while (Data.exit != 1)
             {
-                for (int j = 0; j < Data.enemyCount; j++)
-                {
-                    exit = 1;
-                    for (int i = 0; i < exit; i++)
-                    {
-                        if (coordY > enemyY[j])
-                            coordY--;
-                        else if (coordY < enemyY[j])
-                            coordY++;
-                        if (coordX > enemyX[j])
-                            coordX--;
-                        else if (coordX < enemyX[j])
-                            coordX++;
-                        if (coordY == enemyY[j] && coordX == enemyX[j])
-                        {
-                            distance[j]++;
-                        }
-                        else
-                        {
-                            exit++;
-                            distance[j]++;
-                        }
-                    }
-                }
 
-                int minIndex = 0;
-                for (int i = 0; i < Data.enemyCount; i++)
-                {
-                    if (distance[i] <= 2)
-                    {
-                        minIndex = i;
-                    }
-                }
+            }
+        }
 
-                coordY = y;
-                coordX = x;
-                exit = 1;
-                for (int i = 0; i < exit; i++)
+        private void Spoiled(int a)
+        {
+            while (Data.exit != 1)
+            {
+
+            }
+        }
+
+        private void Recforest(int a)
+        {
+            int night = 0;
+            while (Data.exit != 1)
+            {
+                if (Village.GetClock() < 6 || Village.GetClock() > 21)
+                    night = 2000;
+                else
+                    night = 0;
+                Thread.Sleep(((a * 500) - (Village.GetSkilsForestOut(0) * 15)) + night);
+                if (Village.GetForest() > 0)
                 {
-                    if (coordY > enemyY[minIndex])
-                        coordY--;
-                    else if (coordY < enemyY[minIndex])
-                        coordY++;
-                    if (coordX > enemyX[minIndex])
-                        coordX--;
-                    else if (coordX < enemyX[minIndex])
-                        coordX++;
-                    if ((coordX + 1 == enemyX[minIndex] && coordY == enemyY[minIndex])
-                        || (coordX == enemyX[minIndex] && coordY + 1 == enemyY[minIndex])
-                        || (coordX + 1 == enemyX[minIndex] && coordY + 1 == enemyY[minIndex])
-                        || (coordX - 1 == enemyX[minIndex] && coordY == enemyY[minIndex])
-                        || (coordX == enemyX[minIndex] && coordY - 1 == enemyY[minIndex])
-                        || (coordX - 1 == enemyX[minIndex] && coordY - 1 == enemyY[minIndex]))
-                    {
-                        while (matrix[enemyX[minIndex], enemyY[minIndex]] > 0)
-                        {
-                            arr[coordX, coordY].Invoke(new Action(() => arr[coordX, coordY].Text = "*"));
-                            Thread.Sleep(100);
-                            matrix[enemyX[minIndex], enemyY[minIndex]]--;
-                            arr[coordX, coordY].Invoke(new Action(() => arr[coordX, coordY].Text = ""));
-                        }
-                    }
+                    Village.SetForest(Convert.ToUInt16(Village.GetForest() - 1));
+                    label3.Invoke(new Action(() => label3.Text = Village.GetForest().ToString()));
+                    Village.SetBoards(Convert.ToUInt16(Village.GetBoards() + Village.GetSkilsForestOut(1)));
                 }
+                if (Data.exit == 0)
+                    label7.Invoke(new Action(() => label7.Text = Village.GetBoards().ToString()));
+            }
+        }
+
+        private void Recstone(int a)
+        {
+            int night = 0;
+            while (Data.exit != 1)
+            {
+                if (Village.GetClock() < 6 || Village.GetClock() > 21)
+                    night = 2000;
+                else
+                    night = 0;
+                Thread.Sleep(((a * 500) - (Village.GetSkilsStoneOut(0) * 15)) + night);
+                if (Village.GetStone() > 0)
+                {
+                    Village.SetStone(Convert.ToUInt16(Village.GetStone() - 1));
+                    label4.Invoke(new Action(() => label4.Text = Village.GetStone().ToString()));
+                    Village.SetBrick(Convert.ToUInt16(Village.GetBrick() + Village.GetSkilsStoneOut(1)));
+                }
+                if (Data.exit == 0)
+                    label8.Invoke(new Action(() => label8.Text = Village.GetBrick().ToString()));
+            }
+        }
+
+        private void Recgold(int a)
+        {
+            int night = 0;
+            while (Data.exit != 1)
+            {
+                if (Village.GetClock() < 6 || Village.GetClock() > 21)
+                    night = 2000;
+                else
+                    night = 0;
+                Thread.Sleep(((a * 500) - (Village.GetSkilsGoldOut(0) * 15)) + night);
+                if (Village.GetGold() > 0)
+                {
+                    Village.SetGold(Convert.ToUInt16(Village.GetGold() - 1));
+                    label5.Invoke(new Action(() => label5.Text = Village.GetGold().ToString()));
+                    Village.SetMoney(Convert.ToUInt16(Village.GetMoney() + Village.GetSkilsStoneOut(1)));
+                }
+                if (Data.exit == 0)
+                    label16.Invoke(new Action(() => label16.Text = Village.GetMoney().ToString()));
             }
         }
 
@@ -1294,6 +1227,8 @@ namespace Vik
             }
         }
 
+        // конец потоков
+
         private void pictureBox4_Click(object sender, EventArgs e)
         {
 
@@ -1331,11 +1266,6 @@ namespace Vik
 
         private void pictureBox5_Click(object sender, EventArgs e)
         {
-            Data.healthenemy = 10;
-            Data.enemyOn = 1;
-            Data.enemyVolume = 3;
-            Data.enemyCount = 0;
-            Data.builds = 0;
             Data.exit = 1;
             Form1 train = new Form1();
             this.Visible = false;
@@ -1346,15 +1276,7 @@ namespace Vik
 
     static class Data
     {
-        static public int healthenemy { get; set; } = 10;
-        static public int enemyOn { get; set; } = 1;
-        static public int enemyVolume { get; set; } = 3;
-        static public int enemyCount { get; set; } = 0;
-        static public int builds { get; set; } = 0;
         static public int endgame { get; set; } = 0;
-        static public int konung { get; set; } = 0;
-
-        static public int level { get; set; } = 1;
         static public int music { get; set; } = 1;
         static public int exit { get; set; } = 0;
         static public int teach { get; set; } = 0;

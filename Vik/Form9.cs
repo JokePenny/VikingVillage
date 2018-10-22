@@ -519,23 +519,23 @@ namespace Vik
                 switch (level)
                 {
                     case 2:
-                        return 10;
+                        return 30;
                     case 3:
-                        return 20;
+                        return 45;
                     case 4:
-                        return 40;
-                    case 5:
                         return 60;
+                    case 5:
+                        return 75;
                     case 6:
-                        return 80;
+                        return 90;
                     case 7:
-                        return 100;
+                        return 105;
                     case 8:
                         return 120;
                     case 9:
-                        return 140;
+                        return 135;
                     case 10:
-                        return 160;
+                        return 150;
                     default:
                         break;
                 }

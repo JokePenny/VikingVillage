@@ -17,18 +17,25 @@ namespace Vik
         public Buildquarry[] Quarry;
         public Buildsawmill[] Sawmill;
         public Buildfield[] Field;
-        public Buildheadquarters[] Headquarters;
+        public Buildheadquarters Headquarters;
         public Buildhome[] Home;
-        public Buildmarket[] Market;
+        public Buildmarket Market;
         public BuildWall[] Wall;
         public Buildstorage[] Storage;
-/*
-        public Build(byte x, byte y, ushort Health)
-    : base(x,y)
-        {
-            health = Health;
-        }
-        */
+        public BuildBarn[] Barn;
+        public BuildBarracks[] Barracks;
+        public BuildGoldRec GoldRec;
+        public BuildStoneRec StoneRec;
+        public BuildWoodRec WoodRec;
+        public BuildPort Port;
+        public BuildSanctuary[] Sanctuary;
+        /*
+                public Build(byte x, byte y, ushort Health)
+            : base(x,y)
+                {
+                    health = Health;
+                }
+                */
 
         // геттеры
         public Buildgoldmine[] GetGoldmine()
@@ -47,7 +54,7 @@ namespace Vik
         {
             return Field;
         }
-        public Buildheadquarters[] GetHeadquarters()
+        public Buildheadquarters GetHeadquarters()
         {
             return Headquarters;
         }
@@ -55,7 +62,7 @@ namespace Vik
         {
             return Home;
         }
-        public Buildmarket[] GetMarket()
+        public Buildmarket GetMarket()
         {
             return Market;
         }
@@ -66,6 +73,34 @@ namespace Vik
         public Buildstorage[] GetStorage()
         {
             return Storage;
+        }
+        public BuildBarn[] GetBarn()
+        {
+            return Barn;
+        }
+        public BuildBarracks[] GetBarrracks()
+        {
+            return Barracks;
+        }
+        public BuildGoldRec GetGoldRec()
+        {
+            return GoldRec;
+        }
+        public BuildStoneRec GetStoneRec()
+        {
+            return StoneRec;
+        }
+        public BuildWoodRec GetWoodRec()
+        {
+            return WoodRec;
+        }
+        public BuildSanctuary[] GetSanctuary()
+        {
+            return Sanctuary;
+        }
+        public BuildPort GetPort()
+        {
+            return Port;
         }
 
         //сеттеры
@@ -86,7 +121,7 @@ namespace Vik
         {
             Field = A;
         }
-        public void SetHeadquarters(Buildheadquarters[] A)
+        public void SetHeadquarters(Buildheadquarters A)
         {
             Headquarters = A;
         }
@@ -94,7 +129,7 @@ namespace Vik
         {
             Home = A;
         }
-        public void SetMarket(Buildmarket[] A)
+        public void SetMarket(Buildmarket A)
         {
             Market = A;
         }
@@ -105,6 +140,34 @@ namespace Vik
         public void SetStorage(Buildstorage[] A)
         {
             Storage = A;
+        }
+        public void SetBarn(BuildBarn[] A)
+        {
+            Barn = A;
+        }
+        public void SetBarracks(BuildBarracks[] A)
+        {
+            Barracks = A;
+        }
+        public void SetGoldRec(BuildGoldRec A)
+        {
+            GoldRec = A;
+        }
+        public void SetStoneRec(BuildStoneRec A)
+        {
+            StoneRec = A;
+        }
+        public void SetWoodRec(BuildWoodRec A)
+        {
+            WoodRec = A;
+        }
+        public void SetSanctuary(BuildSanctuary[] A)
+        {
+            Sanctuary = A;
+        }
+        public void SetPort(BuildPort A)
+        {
+            Port = A;
         }
     }
 }

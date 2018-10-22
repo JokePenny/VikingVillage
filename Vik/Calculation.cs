@@ -53,6 +53,30 @@ namespace Vik
             return x;
         }
 
+        static public byte DistanceCalc(byte userPointX, byte userPointY, byte coordBaseX, byte coordBaseY)
+        {
+            byte x = 0;
+            for (int i = 0; i < x; i++)
+            {
+                if (userPointY > coordBaseY)
+                    userPointY--;
+                else if (userPointY < coordBaseY)
+                    userPointY++;
+                if (userPointX > coordBaseX)
+                    userPointX--;
+                else if (userPointX < coordBaseX)
+                    userPointX++;
+                if (userPointY == coordBaseY && userPointX == coordBaseX)
+                {
+                    x++;
+                    i = 254;
+                }
+                else
+                    x++;
+            }
+            return x;
+        }
+
         static public byte CheckBuildCreate(byte coordBuildX, byte numberBuild)
         {
             if (coordBuildX == 254)

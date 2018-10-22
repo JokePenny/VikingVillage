@@ -9,7 +9,7 @@ namespace Vik
 {
     public class Buildstorage : Build
     {
-        private byte ID = 19;// индефикатор объекта 
+        private byte ID = 25;// индефикатор объекта 
 
         public void SetImage()
         {
