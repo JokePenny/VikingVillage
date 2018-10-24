@@ -21,11 +21,11 @@ namespace Vik
             t.SetToolTip(label5, "Здоровье Конунга увеличивает время его жизни!\nКонунг может заболеть и умереть, не забывайте об этом!");
             t.SetToolTip(label6, "Уровень репрессий Конунга влияет на то\nбудут ли возникать бунты");
             label1.Text = Village.GetNameKonung();
+            label2.Text = Village.GetNameKonung() + "\n" + label2.Text;
             numericUpDown1.Value = Village.GetVillageManagment();
             numericUpDown2.Value = Village.GetHealthKonung();
             numericUpDown3.Value = Village.GetRepressionKonung();
             label8.Text = Calculation.ReligionChoose(Village.GetReligionKonung());
-            label9.Text = Convert.ToString(Village.GetMoney());
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
@@ -40,7 +40,6 @@ namespace Vik
                 Village.SetMoney(Village.GetMoney() - PriceSkils(Convert.ToByte(numericUpDown1.Value), Village.GetVillageManagment()));
                 Village.SetVillageManagment(Convert.ToByte(numericUpDown1.Value));
                 numericUpDown1.Minimum = numericUpDown1.Value;
-                label9.Text = Convert.ToString(Village.GetMoney());
             }
             else numericUpDown1.Value = Village.GetVillageManagment();
         }
@@ -52,7 +51,6 @@ namespace Vik
                 Village.SetMoney(Village.GetMoney() - PriceSkils(Convert.ToByte(numericUpDown2.Value), Village.GetHealthKonung()));
                 Village.SetHealthKonung(Convert.ToByte(numericUpDown2.Value));
                 numericUpDown2.Minimum = numericUpDown2.Value;
-                label9.Text = Convert.ToString(Village.GetMoney());
             }
             else numericUpDown2.Value = Village.GetHealthKonung();
         }
@@ -64,7 +62,6 @@ namespace Vik
                 Village.SetMoney(Village.GetMoney() - PriceSkils(Convert.ToByte(numericUpDown3.Value), Village.GetRepressionKonung()));
                 Village.SetRepressionKonung(Convert.ToByte(numericUpDown3.Value));
                 numericUpDown3.Minimum = numericUpDown3.Value;
-                label9.Text = Convert.ToString(Village.GetMoney());
             }
             else numericUpDown3.Value = Village.GetRepressionKonung();
         }

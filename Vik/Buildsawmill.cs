@@ -7,10 +7,20 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class Buildsawmill : Build
+    class Buildsawmill : Build
     {
         private byte distance;// растояние 
         private byte ID = 16;// индефикатор объекта 
+
+        public Buildsawmill(byte X, byte Y, byte Distance) : base(X, Y)
+        {
+            x = X;
+            y = Y;
+            distance = Distance;
+        }
+        public Buildsawmill()
+        {
+        }
 
         public void SetImage()
         {

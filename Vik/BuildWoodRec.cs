@@ -7,10 +7,20 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class BuildWoodRec : Build
+    class BuildWoodRec : Build
     {
         private byte distance;// растояние 
         private byte ID = 18;// индефикатор объекта 
+
+        public BuildWoodRec(byte X, byte Y, byte Distance) : base(X, Y)
+        {
+            x = X;
+            y = Y;
+            distance = Distance;
+        }
+        public BuildWoodRec()
+        {
+        }
 
         public void SetImage()
         {

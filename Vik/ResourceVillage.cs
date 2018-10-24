@@ -19,18 +19,17 @@ namespace Vik
         private byte ReligionKonung; // 0 = язычник 1 = христьянин
         private byte RepressionKonung; // репрессии (подавление бунтов)
         //
-        private ushort eat = 10;
-        private ushort stone = 10;
-        private ushort gold = 100;
-        private ushort forest = 10;
+        private ushort eat = 1000;
+        private ushort stone = 1000;
+        private ushort gold = 1000;
+        private ushort forest = 1000;
         private ushort population = 5;
-        private ushort boards = 0;
-        private ushort brick = 0;
+        private ushort boards = 1000;
+        private ushort brick = 1000;
         private ushort passedDay = 0;
         private byte clock = 0;
         private ushort speedPicking = 3000;
-        private byte ReligionStatic = 100; // устойчивость религии, при торговле с иноземцами или неудачном конунге устойчивость будет падать
-        private byte ReligionVillage = 0; // религия деревни (по дефолту язычники)
+        private sbyte ReligionStatic = 100; // устойчивость религии, при торговле с иноземцами или неудачном конунге устойчивость будет падать
         private double money = 1000;
         private byte Religion = 0; // религия деревни
 
@@ -142,6 +141,10 @@ namespace Vik
         public byte GetReligion()
         {
             return Religion;
+        }
+        public sbyte GetReligionStatic()
+        {
+            return ReligionStatic;
         }
 
         //макс
@@ -298,6 +301,10 @@ namespace Vik
         public void SetReligion(byte A)
         {
             Religion = A;
+        }
+        public void SetReligionStatic(sbyte A)
+        {
+            ReligionStatic = A;
         }
 
         //макс

@@ -63,6 +63,7 @@
     <Compile Include="BuildWall.cs" />
     <Compile Include="BuildWoodRec.cs" />
     <Compile Include="Calculation.cs" />
+    <Compile Include="Coordinates.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

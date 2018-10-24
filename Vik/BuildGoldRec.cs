@@ -7,10 +7,21 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class BuildGoldRec : Build
+    class BuildGoldRec : Build
     {
         private byte ID = 20;// индефикатор объекта
         private byte distance;
+
+        public BuildGoldRec(byte X, byte Y, byte Distance) : base(X, Y)
+        {
+            x = X;
+            y = Y;
+            distance = Distance;
+        }
+        public BuildGoldRec()
+        {
+        }
+
         public void SetImage()
         {
             Form2.arr[x, y].BackgroundImage = Image.FromFile("D:\\01Programms\\PHCS6\\Project\\Vikings\\builds\\images\\tree_279.png");

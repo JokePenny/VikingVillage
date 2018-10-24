@@ -8,10 +8,20 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class Buildheadquarters : Build
+    class Buildheadquarters : Build
     {
-        private byte distance = 0;// растояние 
+        private  byte distance = 0;// растояние 
         private byte ID = 12;// индефикатор объекта 
+
+        public Buildheadquarters(byte X, byte Y, ushort Health) : base(X, Y, Health)
+        {
+            x = X;
+            y = Y;
+            health = Health;
+        }
+        public Buildheadquarters()
+        {
+        }
 
         public void SetImage()
         {

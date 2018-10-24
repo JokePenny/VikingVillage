@@ -7,9 +7,19 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class BuildBarracks : Build
+    class BuildBarracks : Build
     {
         private byte ID = 22;// индефикатор объекта 
+
+        public BuildBarracks(byte X, byte Y, ushort Health) : base(X, Y, Health)
+        {
+            x = X;
+            y = Y;
+            health = Health;
+        }
+        public BuildBarracks()
+        {
+        }
 
         public void SetImage()
         {

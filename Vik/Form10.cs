@@ -87,38 +87,56 @@ namespace Vik
 
         private void pictureBox7_Click(object sender, EventArgs e)
         {
-            Village.SetCoef(Calculation.CoeffCalcul(Convert.ToSByte(label43.Text)));
-            ShowMarket();
+            if(Data.foreigners == 1)
+            {
+                Village.SetCoef(Calculation.CoeffCalcul(Convert.ToSByte(label43.Text)));
+                ShowMarket();
+            }
         }
 
         private void pictureBox8_Click(object sender, EventArgs e)
         {
-            Village.SetCoef(Calculation.CoeffCalcul(Convert.ToSByte(label44.Text)));
-            ShowMarket();
+            if (Data.foreigners == 1)
+            {
+                Village.SetCoef(Calculation.CoeffCalcul(Convert.ToSByte(label44.Text)));
+                ShowMarket();
+            }
         }
 
         private void pictureBox9_Click(object sender, EventArgs e)
         {
-            Village.SetCoef(Calculation.CoeffCalcul(Convert.ToSByte(label45.Text)));
-            ShowMarket();
+            if (Data.foreigners == 1)
+            {
+                Village.SetCoef(Calculation.CoeffCalcul(Convert.ToSByte(label45.Text)));
+                ShowMarket();
+            }
         }
 
         private void pictureBox10_Click(object sender, EventArgs e)
         {
-            Village.SetCoef(Calculation.CoeffCalcul(Convert.ToSByte(label46.Text)));
-            ShowMarket();
+            if (Data.foreigners == 1)
+            {
+                Village.SetCoef(Calculation.CoeffCalcul(Convert.ToSByte(label46.Text)));
+                ShowMarket();
+            }
         }
 
         private void pictureBox11_Click(object sender, EventArgs e)
         {
-            Village.SetCoef(Calculation.CoeffCalcul(Convert.ToSByte(label47.Text)));
-            ShowMarket();
+            if (Data.foreigners == 1)
+            {
+                Village.SetCoef(Calculation.CoeffCalcul(Convert.ToSByte(label47.Text)));
+                ShowMarket();
+            }
         }
 
         private void pictureBox12_Click(object sender, EventArgs e)
         {
-            Village.SetCoef(Calculation.CoeffCalcul(Convert.ToSByte(label48.Text)));
-            ShowMarket();
+            if (Data.foreigners == 1)
+            {
+                Village.SetCoef(Calculation.CoeffCalcul(Convert.ToSByte(label48.Text)));
+                ShowMarket();
+            }
         }
 
         private void ShowMarket()

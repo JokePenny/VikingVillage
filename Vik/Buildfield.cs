@@ -7,11 +7,19 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class Buildfield : Build
+    class Buildfield : Build
     {
-
-        private byte distance;// растояние 
         private byte ID = 10;// индефикатор объекта 
+
+        public Buildfield(byte X, byte Y, ushort Health) : base(X, Y, Health)
+        {
+            x = X;
+            y = Y;
+            health = Health;
+        }
+        public Buildfield()
+        {
+        }
 
         public void SetImage()
         {
@@ -37,10 +45,6 @@ namespace Vik
         {
             return health;
         }
-        public byte GetDistance()
-        {
-            return distance;
-        }
         public byte GetID()
         {
             return ID;
@@ -59,10 +63,6 @@ namespace Vik
         public void SetHealth(ushort A)
         {
             health = A;
-        }
-        public void SetDistance(byte A)
-        {
-            distance = A;
         }
     }
 }

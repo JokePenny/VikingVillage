@@ -117,6 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="label2.Text" xml:space="preserve">
+    <value> родился в семье фермера на берегах Норвегии.
+С раннего возраста отец готовил сына стать
+настоящим воином и, когда повзрослев, сын
+отправился в кругосветное путешествие.
+Вернувшись со славой, он подло убил
+Конуга Сигмара, старшего сына Эйрика Кровавого,
+после чего занял его место, потом заруба пошла пиу пиу
+Джедаи начали высаживаться на берегах нормандии,
+взрывы, кровище, кишки. дока 2, вьетнам.</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="$this.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

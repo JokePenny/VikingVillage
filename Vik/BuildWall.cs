@@ -7,9 +7,19 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class BuildWall : Build
+    class BuildWall : Build
     {
         private byte ID = 17;// индефикатор объекта 
+
+        public BuildWall(byte X, byte Y, ushort Health) : base(X, Y, Health)
+        {
+            x = X;
+            y = Y;
+            health = Health;
+        }
+        public BuildWall()
+        {
+        }
 
         public void SetImage()
         {

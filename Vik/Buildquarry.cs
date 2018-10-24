@@ -7,10 +7,20 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class Buildquarry : Build
+    class Buildquarry : Build
     {
         private byte distance;// растояние
         private byte ID = 15;// индефикатор объекта 
+
+        public Buildquarry(byte X, byte Y, byte Distance) : base(X, Y)
+        {
+            x = X;
+            y = Y;
+            distance = Distance;
+        }
+        public Buildquarry()
+        {
+        }
 
         public void SetImage()
         {

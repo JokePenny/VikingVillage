@@ -42,7 +42,6 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -72,11 +71,9 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(197, 27);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(266, 65);
+            this.label2.Size = new System.Drawing.Size(299, 117);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Описание жизни конунга Описание жизни конунга\r\nОписание жизни конунга Описание жи" +
-    "зни конунга\r\nОписание жизни конунга Описание жизни конунга\r\nОписание жизни конун" +
-    "га Описание жизни конунга\r\n\r\n";
+            this.label2.Text = resources.GetString("label2.Text");
             // 
             // label3
             // 
@@ -179,22 +176,12 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(378, 182);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(13, 13);
-            this.label9.TabIndex = 10;
-            this.label9.Text = "0";
-            // 
             // Form8
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(804, 452);
-            this.Controls.Add(this.label9);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.numericUpDown3);
@@ -236,6 +223,5 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label9;
     }
 }

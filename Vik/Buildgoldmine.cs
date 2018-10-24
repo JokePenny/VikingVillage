@@ -7,10 +7,21 @@ using System.Drawing;
 
 namespace Vik
 {
-    public class Buildgoldmine : Build
+    class Buildgoldmine : Build
     {
         private byte distance;// растояние 
         private byte ID = 11;// индефикатор объекта 
+
+
+        public Buildgoldmine(byte X, byte Y, byte Distance) : base(X, Y)
+        {
+            x = X;
+            y = Y;
+            distance = Distance;
+        }
+        public Buildgoldmine()
+        {
+        }
 
         public void SetImage()
         {
