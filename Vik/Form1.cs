@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Media;
 
@@ -20,7 +14,7 @@ namespace Vik
             this.FormBorderStyle = FormBorderStyle.None;
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
             SoundPlayer Simple = new SoundPlayer(@"D:\01Programms\VS\Repository\Wik\Vik\Vik\Properties\Resources\click.wav");
             Simple.Play();
@@ -31,7 +25,12 @@ namespace Vik
             Simple.Stop();
         }
 
-        private void label2_Click(object sender, EventArgs e)
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
         {
             SoundPlayer Simpl = new SoundPlayer(@"D:\01Programms\VS\Repository\Wik\Vik\Vik\Properties\Resources\click.wav");
             Simpl.Play();
@@ -42,62 +41,51 @@ namespace Vik
             this.Dispose();
         }
 
-        private void label3_Click(object sender, EventArgs e)
+        private void pictureBox4_Click(object sender, EventArgs e)
         {
             SoundPlayer Simple = new SoundPlayer(@"D:\01Programms\VS\Repository\Wik\Vik\Vik\Properties\Resources\click.wav");
             Simple.Play();
             Application.Exit();
         }
 
-        private void label1_MouseHover(object sender, EventArgs e)
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            SoundPlayer Simple = new SoundPlayer(@"D:\01Programms\VS\Repository\Wik\Vik\Vik\Properties\Resources\click.wav");
-            Simple.Play();
-            label1.ForeColor = Color.Black;
+            pictureBox1.BackgroundImage = Image.FromFile("C:\\Users\\IMP\\Desktop\\игра\\images\\tomswallpapers_03.png");
         }
 
-        private void label2_MouseHover(object sender, EventArgs e)
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
-            SoundPlayer Simple = new SoundPlayer(@"D:\01Programms\VS\Repository\Wik\Vik\Vik\Properties\Resources\click.wav");
-            Simple.Play();
-            label2.ForeColor = Color.Black;
+            pictureBox1.BackgroundImage = Image.FromFile("C:\\Users\\IMP\\Desktop\\игра\\images\\1_03.png");
         }
 
-        private void label3_MouseHover(object sender, EventArgs e)
+        private void pictureBox2_MouseMove(object sender, MouseEventArgs e)
         {
-            SoundPlayer Simple = new SoundPlayer(@"D:\01Programms\VS\Repository\Wik\Vik\Vik\Properties\Resources\click.wav");
-            Simple.Play();
-            label3.ForeColor = Color.Black;
+            pictureBox2.BackgroundImage = Image.FromFile("C:\\Users\\IMP\\Desktop\\игра\\images\\tomswallpapers_04.png");
         }
 
-        private void label3_MouseLeave(object sender, EventArgs e)
+        private void pictureBox2_MouseLeave(object sender, EventArgs e)
         {
-            label3.ForeColor = Color.White;
+            pictureBox2.BackgroundImage = Image.FromFile("C:\\Users\\IMP\\Desktop\\игра\\images\\1_04.png");
         }
 
-        private void label1_MouseLeave(object sender, EventArgs e)
+        private void pictureBox3_MouseMove(object sender, MouseEventArgs e)
         {
-            label1.ForeColor = Color.White;
+            pictureBox3.BackgroundImage = Image.FromFile("C:\\Users\\IMP\\Desktop\\игра\\images\\tomswallpapers_05.png");
         }
 
-        private void label2_MouseLeave(object sender, EventArgs e)
+        private void pictureBox3_MouseLeave(object sender, EventArgs e)
         {
-            label2.ForeColor = Color.White;
+            pictureBox3.BackgroundImage = Image.FromFile("C:\\Users\\IMP\\Desktop\\игра\\images\\1_05.png");
         }
 
-        private void label1_MouseMove(object sender, MouseEventArgs e)
+        private void pictureBox4_MouseMove(object sender, MouseEventArgs e)
         {
-            label1.ForeColor = Color.Black;
+            pictureBox4.BackgroundImage = Image.FromFile("C:\\Users\\IMP\\Desktop\\игра\\images\\tomswallpapers_06.png");
         }
 
-        private void label2_MouseMove(object sender, MouseEventArgs e)
+        private void pictureBox4_MouseLeave(object sender, EventArgs e)
         {
-            label2.ForeColor = Color.Black;
-        }
-
-        private void label3_MouseMove(object sender, MouseEventArgs e)
-        {
-            label3.ForeColor = Color.Black;
+            pictureBox4.BackgroundImage = Image.FromFile("C:\\Users\\IMP\\Desktop\\игра\\images\\1_06.png");
         }
     }
 }
