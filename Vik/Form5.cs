@@ -19,7 +19,6 @@ namespace Vik
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            Data.exit = 0;
             this.Close();
         }
     }

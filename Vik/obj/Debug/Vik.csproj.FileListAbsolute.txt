@@ -10,6 +10,10 @@ D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.csproj.CoreCompileInputs.
 D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.exe
 D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.pdb
 D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form3.resources
-D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form4.resources
 D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form5.resources
 D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form6.resources
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form7.resources
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form8.resources
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form9.resources
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.Form10.resources
+D:\01Programms\VS\Repository\Wik\Vik\Vik\obj\Debug\Vik.MarketForm.resources
