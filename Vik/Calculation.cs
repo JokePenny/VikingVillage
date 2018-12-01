@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Vik
+﻿namespace Vik
 {
     public class Calculation
     {
@@ -56,7 +50,7 @@ namespace Vik
         static public byte DistanceCalc(byte userPointX, byte userPointY, byte coordBaseX, byte coordBaseY)
         {
             byte x = 0;
-            for (int i = 0; i < x; i++)
+            for (int i = 0; i < x + 1; i++)
             {
                 if (userPointY > coordBaseY)
                     userPointY--;
@@ -122,8 +116,5 @@ namespace Vik
             else
                 return "";
         }
-
-        // прокачка зданий
-
     }
 }

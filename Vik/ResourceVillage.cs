@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Vik
+﻿namespace Vik
 {
     public sealed class ResourceVillage
     {
@@ -19,18 +13,18 @@ namespace Vik
         private byte ReligionKonung; // 0 = язычник 1 = христьянин
         private byte RepressionKonung; // репрессии (подавление бунтов)
         //
-        private ushort eat = 1000;
-        private ushort stone = 1000;
-        private ushort gold = 1000;
-        private ushort forest = 1000;
-        private ushort population = 5;
-        private ushort boards = 1000;
-        private ushort brick = 1000;
-        private ushort passedDay = 0;
-        private byte clock = 0;
+        private ushort eat;
+        private ushort stone;
+        private ushort gold;
+        private ushort forest;
+        private ushort population;
+        private ushort boards;
+        private ushort brick;
+        private ushort passedDay;
+        private byte clock;
         private ushort speedPicking = 3000;
-        private sbyte ReligionStatic = 100; // устойчивость религии, при торговле с иноземцами или неудачном конунге устойчивость будет падать
-        private double money = 1000;
+        private sbyte ReligionStatic; // устойчивость религии, при торговле с иноземцами или неудачном конунге устойчивость будет падать
+        private double money;
         private byte Religion = 0; // религия деревни
 
         /// <summary>

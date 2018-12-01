@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-
-namespace Vik
+﻿namespace Vik
 {
     abstract class Build
     {
@@ -26,5 +19,35 @@ namespace Vik
         public Build()
         {
         }
-    }
+
+		//геттеры
+
+		public byte GetX()
+		{
+			return x;
+		}
+		public byte GetY()
+		{
+			return y;
+		}
+		public ushort GetHealth()
+		{
+			return health;
+		}
+
+		//сеттеры
+
+		public void SetX(byte A)
+		{
+			x = A;
+		}
+		public void SetY(byte A)
+		{
+			y = A;
+		}
+		public void SetHealth(ushort A)
+		{
+			health = A;
+		}
+	}
 }
